@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="{{asset('client/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/animate.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/swiper-bundle.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/slick.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/magnific-popup.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/spacing.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/meanmenu.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/nice-select.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/icon-dukamarket.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/main.css')}}">
