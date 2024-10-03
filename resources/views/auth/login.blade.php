@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="tpsign__remember d-flex align-items-center justify-content-between mb-15">
                                     <div class="tpsign__account">
-                                        <a href="#">Don't Have an Account?</a>
+                                        <a href="{{route('register')}}">Don't Have an Account?</a>
                                     </div>
                                     <div class="tpsign__pass">
                                         <a href="#">Forgot Password?</a>
