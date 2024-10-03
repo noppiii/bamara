@@ -44,29 +44,33 @@
                                     </div>
                                 </div>
                                 <div class="tptrack__id mb-10">
-                                    <form action="#">
+                                    <form id="loginForm" action="{{ route('login.post') }}" method="POST">
+                                        @csrf
                                         <span><i class="fal fa-user"></i></span>
-                                        <input type="email" placeholder="Username / email address">
+                                        <input type="email" id="email" name="email" placeholder="Email address"
+                                               required>
                                     </form>
                                 </div>
                                 <div class="tptrack__email mb-10">
-                                    <form action="#">
+                                    <form id="passwordForm">
                                         <span><i class="fal fa-key"></i></span>
-                                        <input type="text" placeholder="Password">
+                                        <input type="password" id="password" name="password" placeholder="Password"
+                                               required>
                                     </form>
                                 </div>
                                 <div class="tpsign__remember d-flex align-items-center justify-content-between mb-15">
                                     <div class="tpsign__account">
-                                        <a href="#">Don't Have Account?</a>
+                                        <a href="#">Don't Have an Account?</a>
                                     </div>
                                     <div class="tpsign__pass">
-                                        <a href="#">Forget Password</a>
+                                        <a href="#">Forgot Password?</a>
                                     </div>
                                 </div>
                                 <div class="tptrack__btn mb-30">
-                                    <button class="tptrack__submition active">Login Now<i
+                                    <button type="button" class="tptrack__submition active" id="loginButton">Login Now<i
                                             class="fal fa-long-arrow-right"></i></button>
                                 </div>
+
                                 <div class="tpsign__remember d-flex align-items-center justify-content-center">
                                     <div class="tpsign__pass">
                                         <h5 class="tptrack__item-title">Or</h5>
@@ -74,8 +78,11 @@
                                 </div>
 
                                 <div class="tptrack__btn mb-30">
-                                    <a href="#" class="tptrack__submition active d-flex align-items-center justify-content-center position-relative bg-white" style="padding-left: 50px;">
-                                        <img src="{{asset('client/assets/img/icon/icon-google.png')}}" width="40px" class="position-absolute" style="left: 20px;" alt="">
+                                    <a href="#"
+                                       class="tptrack__submition active d-flex align-items-center justify-content-center position-relative bg-white"
+                                       style="padding-left: 50px;">
+                                        <img src="{{asset('client/assets/img/icon/icon-google.png')}}" width="40px"
+                                             class="position-absolute" style="left: 20px;" alt="">
                                         <span class="mx-auto text-dark">Continue with Google</span>
                                     </a>
                                 </div>
@@ -157,4 +164,47 @@
         <!-- feature-area-end -->
 
     </main>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function () {
+            submitLoginForm();
+        });
+
+        document.getElementById('password').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitLoginForm();
+            }
+        });
+
+        function submitLoginForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route('login.post') }}';
+
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = '_token';
+            csrfInput.value = '{{ csrf_token() }}';
+            form.appendChild(csrfInput);
+
+            const emailInput = document.createElement('input');
+            emailInput.type = 'hidden';
+            emailInput.name = 'email';
+            emailInput.value = email;
+            form.appendChild(emailInput);
+
+            const passwordInput = document.createElement('input');
+            passwordInput.type = 'hidden';
+            passwordInput.name = 'password';
+            passwordInput.value = password;
+            form.appendChild(passwordInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
 @endsection

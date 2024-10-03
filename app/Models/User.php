@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
 use App\Models\Auth\SocialAccount;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -93,63 +94,77 @@ class User extends Model implements MustVerifyEmail, AuthenticatableContract, Ca
         );
     }
 
+    public function hasRole($role)
+    {
+        return $this->role->name === $role;
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->permissions->contains('name', $permission);
+    }
+
+    /**
+     * Get the name of the unique identifier for the user.
+     */
     public function getAuthIdentifierName()
     {
-        // TODO: Implement getAuthIdentifierName() method.
+        return 'email';
     }
 
     public function getAuthIdentifier()
     {
-        // TODO: Implement getAuthIdentifier() method.
+        return $this->getKey();
     }
 
     public function getAuthPassword()
     {
-        // TODO: Implement getAuthPassword() method.
+        return $this->password;
     }
 
     public function getRememberToken()
     {
-        // TODO: Implement getRememberToken() method.
+        return $this->remember_token;
     }
 
     public function setRememberToken($value)
     {
-        // TODO: Implement setRememberToken() method.
+        $this->remember_token = $value;
     }
 
     public function getRememberTokenName()
     {
-        // TODO: Implement getRememberTokenName() method.
+        return 'remember_token';
     }
 
     public function getEmailForPasswordReset()
     {
-        // TODO: Implement getEmailForPasswordReset() method.
+        return $this->email;
     }
 
     public function sendPasswordResetNotification($token)
     {
-        // TODO: Implement sendPasswordResetNotification() method.
+        // Implement notification here
     }
 
     public function hasVerifiedEmail()
     {
-        // TODO: Implement hasVerifiedEmail() method.
+        return !is_null($this->email_verified_at);
     }
 
     public function markEmailAsVerified()
     {
-        // TODO: Implement markEmailAsVerified() method.
+        $this->email_verified_at = now();
+        $this->save();
     }
 
     public function sendEmailVerificationNotification()
     {
-        // TODO: Implement sendEmailVerificationNotification() method.
+        // Implement email verification notification
     }
 
     public function getEmailForVerification()
     {
-        // TODO: Implement getEmailForVerification() method.
+        return $this->email;
     }
 }

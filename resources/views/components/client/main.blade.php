@@ -44,6 +44,9 @@
 @include('components.client.footer')
 <!-- footer-area-end -->
 
+<!-- JS here -->
+@include('components.client.js.script')
+@stack('script')
 {{-- sweet alert --}}
 @if (Session::has('success_message'))
     <script>
@@ -90,12 +93,12 @@
     @endforeach
 @endif
 
-@if (Session::has('error_message_update_details'))
+@if (Session::has('error_message'))
     <script>
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: "{{ Session::get('error_message_update_details') }}",
+            text: "{{ Session::get('error_message') }}",
             showConfirmButton: false,
             timer: 3000 // milliseconds
         });
@@ -161,8 +164,5 @@
         });
     </script>
 @endif
-<!-- JS here -->
-@include('components.client.js.script')
-@stack('script')
 </body>
 </html>
