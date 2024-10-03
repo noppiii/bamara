@@ -21,9 +21,9 @@ class LoginController extends Controller
             'password' => 'required',
         ];
         $customMessages = [
-            'email.required' => 'Email harus diisi!!!',
-            'email.email' => 'Email tidak sesuai format!!!',
-            'password.required' => 'Password harus diisi!!!',
+            'email.required' => 'Email is required!',
+            'email.email' => 'Please provide a valid email address!',
+            'password.required' => 'Password is required!',
         ];
         $this->validate($request, $rules, $customMessages);
 
@@ -34,15 +34,15 @@ class LoginController extends Controller
 
             if ($user->status_account === 'pending') {
                 Auth::logout();
-                return redirect()->back()->with('error_message', 'Data anda belum terverifikasi.');
+                return redirect()->back()->with('error_message', 'Your account is not yet verified.');
             }
 
             if ($user->status_account === 'inactive') {
                 Auth::logout();
-                return redirect()->back()->with('error_message', 'Maaf data anda tidak aktif.');
+                return redirect()->back()->with('error_message', 'Sorry, your account is inactive.');
             }
 
-            Session::flash('success_message', 'Berhasil Masuk');
+            Session::flash('success_message', 'Login successful');
 
             if ($user->hasRole('Admin')) {
                 return redirect()->route('admin.dashboard');
@@ -50,9 +50,9 @@ class LoginController extends Controller
                 return redirect()->route('user.dashboard');
             }
 
-            return redirect()->route('login')->with('error_message', 'Anda tidak memiliki akses.');
+            return redirect()->route('login')->with('error_message', 'You do not have access.');
         }
 
-        return redirect()->back()->with("error_message", "Email atau Password tidak sesuai. Silahkan masukan data dengan benar!!!!!");
+        return redirect()->back()->with("error_message", "Invalid email or password. Please enter correct information!");
     }
 }
