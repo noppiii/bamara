@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('oauth_providers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('client_id');
-            $table->string('client_secret');
-            $table->string('redirect_url');
+            $table->string('client_id')->nullable();
+            $table->string('client_secret')->nullable();
+            $table->string('redirect_url')->nullable();
             $table->timestamps();
         });
     }
