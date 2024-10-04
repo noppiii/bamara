@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerification;
 use App\Models\Auth\Role;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -44,6 +47,8 @@ class RegisterController extends Controller
             $user->phone = $request->input('phone');
             $user->password = Hash::make($request->input('password'));
 
+            $user->email_verification_token = Str::random(60);
+
             $userRole = Role::where('name', 'User')->first();
             if ($userRole) {
                 $user->role_id = $userRole->id;
@@ -51,12 +56,14 @@ class RegisterController extends Controller
 
             $user->save();
 
+            Mail::to($user->email)->send(new EmailVerification($user));
+
             return redirect()->route('login')->with('success_message_create', 'Registration successful! Check your email for confirmation.');
         } catch (Exception $e) {
-
             return redirect()->back()->withInput()->with('error_message', 'An error occurred during registration. Please try again.');
         }
     }
+
 
 
 }

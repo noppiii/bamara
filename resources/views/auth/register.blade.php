@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="tptrack__btn mb-30">
-                                    <a href="#"
+                                    <a href="{{route('google.login')}}"
                                        class="tptrack__submition active d-flex align-items-center justify-content-center position-relative bg-white"
                                        style="padding-left: 50px;">
                                         <img src="{{asset('client/assets/img/icon/icon-google.png')}}" width="40px"
