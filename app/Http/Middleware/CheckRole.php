@@ -11,7 +11,15 @@ class CheckRole
 {
     public function handle(Request $request, Closure $next, $role)
     {
-        if (!Auth::check() || !Auth::user()->hasRole($role)) {
+        $isAuthenticated = $request->session()->get('authenticate', false);
+
+        if (!$isAuthenticated) {
+            return redirect()->route('login')->with('error_message', 'You must be logged in.');
+        }
+
+        $userRole = $request->session()->get('user_role');
+
+        if ($userRole !== $role) {
             return redirect()->route('login')->with('error_message', 'You do not have access to this resource.');
         }
 

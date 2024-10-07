@@ -96,8 +96,9 @@ class User extends Model implements MustVerifyEmail, AuthenticatableContract, Ca
 
     public function hasRole($role)
     {
-        return $this->role->name === $role;
+        return $this->role && $this->role->name === $role;
     }
+
 
     public function hasPermission($permission)
     {

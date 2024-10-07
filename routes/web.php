@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardPenjualanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +29,9 @@ Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->na
 Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->name('verify.email');
 
-Route::group(['middleware' => ['role:Admin']], function () {
-
-});
-
-Route::group(['middleware' => ['role:User']], function () {
-
+Route::middleware(['role:Admin'])->group(function () {
+    Route::prefix('admin')
+        ->group(function () {
+            Route::get('/dashboard-penjualan', [DashboardPenjualanController::class, 'index'])->name('admin.dashboard-penjualan');
+        });
 });

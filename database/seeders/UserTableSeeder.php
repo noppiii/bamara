@@ -22,6 +22,7 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'role_id' => $adminRole->id,
+            'status_account' => 'active'
         ]);
 
         User::create([
@@ -29,6 +30,7 @@ class UserTableSeeder extends Seeder
             'email' => 'user@example.com',
             'password' => bcrypt('password'),
             'role_id' => $userRole->id,
+            'status_account' => 'active'
         ]);
     }
 }

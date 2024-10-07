@@ -2,56 +2,6 @@
 <header>
     <div class="header__top theme-bg-1 d-none d-md-block">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="header__top-left">
-                        <span>Due to the <strong>COVID-19</strong> epidemic, orders may be processed with a slight delay.</span>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="header__top-right d-flex align-items-center">
-                        <div class="header__top-link">
-                            <a href="#">Store Location</a>
-                            <a href="#">Order Tracking</a>
-                            <a href="faq.html">FAQs</a>
-                        </div>
-                        <div class="header__lang">
-                            <span class="header__lang-select">English <i class="far fa-angle-down"></i></span>
-                            <ul class="header__lang-submenu">
-                                <li>
-                                    <a href="#">Australia</a>
-                                </li>
-                                <li>
-                                    <a href="#">Spain</a>
-                                </li>
-                                <li>
-                                    <a href="#">Brazil</a>
-                                </li>
-                                <li>
-                                    <a href="#">English</a>
-                                </li>
-                                <li>
-                                    <a href="#">France</a>
-                                </li>
-                                <li>
-                                    <a href="#">United States</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="header__top-price">
-                            <select>
-                                <option>USD</option>
-                                <option>ARS</option>
-                                <option>AUD</option>
-                                <option>BRL</option>
-                                <option>GBP</option>
-                                <option>DKK</option>
-                                <option>EUR</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div id="header-sticky" class="header__main-area d-none d-xl-block">
@@ -173,7 +123,7 @@
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
                             </div>
                             <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="log-in.html"><i class="icon-user"></i></a>
+                                <a href="{{route('login')}}"><i class="icon-user"></i></a>
                             </div>
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="wishlist.html"><i class="icon-heart icons"></i></a>

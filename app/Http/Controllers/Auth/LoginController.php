@@ -30,7 +30,13 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             $user = Auth::user();
+            $request->session()->put('user', $user);
+            $request->session()->put('user_role', $user->role->name);
+            $request->session()->put('authenticate', Auth::check());
+
+            session()->save();
 
             if ($user->status_account === 'pending') {
                 Auth::logout();
@@ -42,12 +48,11 @@ class LoginController extends Controller
                 return redirect()->back()->with('error_message', 'Sorry, your account is inactive.');
             }
 
-            Session::flash('success_message', 'Login successful');
-
+            Session::flash('success_message', 'Berhasil Login');
             if ($user->hasRole('Admin')) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard-penjualan');
             } elseif ($user->hasRole('User')) {
-                return redirect()->route('user.dashboard');
+                return redirect()->route('admin.dashboard-penjualan');
             }
 
             return redirect()->route('login')->with('error_message', 'You do not have access.');
@@ -55,4 +60,5 @@ class LoginController extends Controller
 
         return redirect()->back()->with("error_message", "Invalid email or password. Please enter correct information!");
     }
+
 }
