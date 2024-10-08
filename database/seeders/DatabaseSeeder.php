@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
             RolePermissionsTableSeeder::class,
             UserTableSeeder::class,
+            CategoryProductSeeder::class,
+            TagProductSeeder::class,
+            DiscountProductSeeder::class,
+            ProductSeeder::class,
+            WishlistSeeder::class,
+            CartSeeder::class,
+            ReviewSeeder::class,
+            OrderSeeder::class,
+            OrderItemSeeder::class,
         ]);
     }
 }
