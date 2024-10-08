@@ -8,4 +8,5 @@
 <link rel="stylesheet" href="{{asset('client/assets/css/nice-select.css')}}">
 <link rel="stylesheet" href="{{asset('client/assets/css/fontawesome.min.css')}}">
 <link rel="stylesheet" href="{{asset('client/assets/css/icon-dukamarket.css')}}">
+<link rel="stylesheet" href="{{asset('client/assets/css/jquery-ui.css')}}">
 <link rel="stylesheet" href="{{asset('client/assets/css/main.css')}}">

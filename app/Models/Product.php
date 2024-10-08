@@ -26,6 +26,11 @@ class Product extends Model
         return $this->belongsToMany(TagProduct::class, 'tag_product_mappings', 'product_id', 'tag_product_id');
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
     public function discount(): BelongsTo
     {
         return $this->belongsTo(DiscountProduct::class, 'discount_id');

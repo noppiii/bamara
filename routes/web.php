@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->name('verify.email');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')

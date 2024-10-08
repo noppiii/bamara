@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->integer('stock');
             $table->decimal('price', 10, 2);
-            $table->string('main_image')->nullable();
             $table->string('short_description', 255);
             $table->text('description');
             $table->foreignId('discount_id')->nullable()->constrained('discount_products')->onDelete('set null');

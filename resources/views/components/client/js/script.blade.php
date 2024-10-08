@@ -11,6 +11,7 @@
 <script src="{{asset('client/assets/js/imagesloaded-pkgd.js')}}"></script>
 <script src="{{asset('client/assets/js/countdown.js')}}"></script>
 <script src="{{asset('client/assets/js/ajax-form.js')}}"></script>
+<script src="{{asset('client/assets/js/jquery-ui.js')}}"></script>
 <script src="{{asset('client/assets/js/parallax-effect.min.js')}}"></script>
 <script src="{{asset('client/assets/js/meanmenu.js')}}"></script>
 <script src="{{asset('client/assets/js/main.js')}}"></script>
