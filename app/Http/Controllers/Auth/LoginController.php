@@ -52,7 +52,7 @@ class LoginController extends Controller
             if ($user->hasRole('Admin')) {
                 return redirect()->route('admin.dashboard-penjualan');
             } elseif ($user->hasRole('User')) {
-                return redirect()->route('admin.dashboard-penjualan');
+                return redirect()->route('user.dashboard');
             }
 
             return redirect()->route('login')->with('error_message', 'You do not have access.');

@@ -13,6 +13,7 @@ class CheckRole
     {
         $isAuthenticated = $request->session()->get('authenticate', false);
 
+
         if (!$isAuthenticated) {
             return redirect()->route('login')->with('error_message', 'You must be logged in.');
         }
