@@ -168,4 +168,24 @@ class User extends Model implements MustVerifyEmail, AuthenticatableContract, Ca
     {
         return $this->email;
     }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(Wishlist::class, 'user_id');
+    }
+
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'user_id');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }
