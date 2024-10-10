@@ -50,4 +50,9 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class, 'carts', 'product_id', 'user_id')->withPivot('quantity');
     }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class, 'product_id');
+    }
 }
