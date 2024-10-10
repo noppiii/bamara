@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TagProduct;
+use App\Models\CategoryProduct;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class TagProductController extends Controller
+class CategoryProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,33 +20,32 @@ class TagProductController extends Controller
         $user = $request->session()->get('user');
 
         $search = $request->input('search');
-        $tagQuery = TagProduct::query();
+        $categoryQuery = CategoryProduct::query();
 
         if ($search) {
-            $tagQuery->where('name', 'LIKE', '%' . $search . '%')
+            $categoryQuery->where('name', 'LIKE', '%' . $search . '%')
                 ->orWhereHas('products', function ($query) use ($search) {
                     $query->where('name', 'LIKE', '%' . $search . '%');
                 });
         }
 
-        $allTags = $tagQuery->with('products')->paginate(10);
-        $totalTags = TagProduct::count();
+        $allCategories = $categoryQuery->with('products')->paginate(10);
+        $totalCategories = CategoryProduct::count();
 
-        $favoriteTags = TagProduct::withCount(['products as total_sold' => function ($query) {
+        $favoriteCategories = CategoryProduct::withCount(['products as total_sold' => function ($query) {
             $query->join('order_items', 'order_items.product_id', '=', 'products.id')
                 ->select(DB::raw('SUM(order_items.quantity)'));
         }])
             ->orderBy('total_sold', 'desc')
             ->firstOrFail();
 
-        $mostProductTags = TagProduct::withCount('products')
+        $mostProductCategories = CategoryProduct::withCount('products')
             ->orderBy('products_count', 'desc')
             ->firstOrFail();
 
-        return view('pages.admin.product.tag.index', compact('allTags', 'user', 'favoriteTags', 'mostProductTags', 'totalTags',
-        'search'));
+        return view('pages.admin.product.category.index', compact('allCategories', 'user', 'favoriteCategories', 'mostProductCategories', 'totalCategories',
+            'search'));
     }
-
 
 
     /**
@@ -67,25 +66,25 @@ class TagProductController extends Controller
         ];
 
         $customMessages = [
-            'name.required' => 'The tag name is required!',
-            'name.string' => 'The tag name must be a valid string!',
-            'name.max' => 'The tag name must not exceed 255 characters!',
+            'name.required' => 'The category name is required!',
+            'name.string' => 'The category name must be a valid string!',
+            'name.max' => 'The category name must not exceed 255 characters!',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         try {
-            $tag = new TagProduct();
-            $tag->create([
+            $category = new CategoryProduct();
+            $category->create([
                 'name' => $request->input('name'),
                 'slug' => Str::slug(Str::lower($request->input('name')), '-'),
             ]);
 
-            Session::flash('success_message_create', 'The tag product has been successfully saved.');
-            return redirect()->route('admin.tag-product.index');
+            Session::flash('success_message_create', 'The category product has been successfully saved.');
+            return redirect()->route('admin.category-product.index');
 
         } catch (QueryException $e) {
-            $errorMessage = ($e->getCode() === 23000) ? 'A tag with this name already exists.' : 'An error occurred while saving the tag.';
+            $errorMessage = ($e->getCode() === 23000) ? 'A category with this name already exists.' : 'An error occurred while saving the category.';
 
             return redirect()->back()->withInput()->withErrors([$errorMessage]);
         }
@@ -117,29 +116,29 @@ class TagProductController extends Controller
         ];
 
         $customMessages = [
-            'name.required' => 'The tag name is required!',
-            'name.string' => 'The tag name must be a valid string!',
-            'name.max' => 'The tag name must not exceed 255 characters!',
+            'name.required' => 'The category name is required!',
+            'name.string' => 'The category name must be a valid string!',
+            'name.max' => 'The category name must not exceed 255 characters!',
         ];
 
         $this->validate($request, $rules, $customMessages);
 
         try {
-            $tag = TagProduct::findOrFail($id);
+            $category = CategoryProduct::findOrFail($id);
 
-            $tag->update([
+            $category->update([
                 'name' => $request->input('name'),
                 'slug' => Str::slug(Str::lower($request->input('name')), '-'),
             ]);
 
-            Session::flash('success_message_update', 'The tag product has been successfully updated.');
-            return redirect()->route('admin.tag-product.index');
+            Session::flash('success_message_update', 'The category product has been successfully updated.');
+            return redirect()->route('admin.category-product.index');
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->back()->withErrors(['Tag not found.']);
+            return redirect()->back()->withErrors(['category not found.']);
 
         } catch (QueryException $e) {
-            $errorMessage = ($e->getCode() === 23000) ? 'A tag with this name already exists.' : 'An error occurred while updating the tag.';
+            $errorMessage = ($e->getCode() === 23000) ? 'A category with this name already exists.' : 'An error occurred while updating the category.';
             return redirect()->back()->withInput()->withErrors([$errorMessage]);
         }
     }
@@ -151,23 +150,22 @@ class TagProductController extends Controller
     public function destroy(string $id)
     {
         try {
-            $tag = TagProduct::findOrFail($id);
+            $category = CategoryProduct::findOrFail($id);
 
-            $tag->products()->detach();
+            $category->products()->detach();
 
-            $tag->delete();
+            $category->delete();
 
-            Session::flash('success_message_delete', 'The tag product has been successfully deleted.');
-            return redirect()->route('admin.tag-product.index');
+            Session::flash('success_message_delete', 'The category product has been successfully deleted.');
+            return redirect()->route('admin.category-product.index');
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->back()->withErrors(['Tag not found.']);
+            return redirect()->back()->withErrors(['category not found.']);
 
         } catch (QueryException $e) {
-            $errorMessage = 'An error occurred while deleting the tag.';
+            $errorMessage = 'An error occurred while deleting the category.';
 
             return redirect()->back()->withErrors([$errorMessage]);
         }
     }
-
 }

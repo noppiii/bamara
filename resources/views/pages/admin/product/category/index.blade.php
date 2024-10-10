@@ -1,9 +1,9 @@
 @extends('components.admin.main')
 @section('title')
-    Tag Product | {{ config('app.name') }}
+    category Product | {{ config('app.name') }}
 @endsection
 @section('pages')
-    Tag Product Admin
+    category Product Admin
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -16,7 +16,7 @@
                         <div class="col-sm-7">
                             <div class="card-body">
                                 <h5 class="text-primary">Welcome {{$user->name}}! 🎉</h5>
-                                <p>Here you can control and manage all product tags</p>
+                                <p>Here you can control and manage all product categories</p>
                                 <button id="viewDataLink" class="btn btn-sm btn-outline-primary">View Data</button>
                             </div>
                         </div>
@@ -40,15 +40,15 @@
                         <div class="card-body">
                             <div class="d-flex align-items-start justify-content-between">
                                 <div class="content-left">
-                                    <span>Total Tag</span>
+                                    <span>Total Category</span>
                                     <div class="d-flex align-items-center my-1">
-                                        <h4 class="mb-0 me-2">{{$totalTags}}</h4>
+                                        <h4 class="mb-0 me-2">{{$totalCategories}}</h4>
                                         {{--                                        <span class="text-success">(+29%)</span>--}}
                                     </div>
-                                    <small>Total Tag Product</small>
+                                    <small>Total category Product</small>
                                 </div>
                                 <span class="badge bg-label-primary rounded p-2">
-                    <i class="ti ti-tag ti-sm"></i>
+                    <i class="ti ti-category ti-sm"></i>
                   </span>
                             </div>
                         </div>
@@ -59,15 +59,15 @@
                         <div class="card-body">
                             <div class="d-flex align-items-start justify-content-between">
                                 <div class="content-left">
-                                    <span>Tag Favorite</span>
+                                    <span>category Favorite</span>
                                     <div class="d-flex align-items-center my-1">
-                                        <h6 class="mb-0 me-2">{{$favoriteTags->name}}</h6>
+                                        <h6 class="mb-0 me-2">{{$favoriteCategories->name}}</h6>
                                         {{--                                        <span class="text-success">(+18%)</span>--}}
                                     </div>
-                                    <small>Tag with the Most Product Sales</small>
+                                    <small>category with the Most Product Sales</small>
                                 </div>
                                 <span class="badge bg-label-secondary rounded p-2">
-                    <i class="ti ti-tag ti-sm"></i>
+                    <i class="ti ti-category ti-sm"></i>
                   </span>
                             </div>
                         </div>
@@ -78,15 +78,15 @@
                         <div class="card-body">
                             <div class="d-flex align-items-start justify-content-between">
                                 <div class="content-left">
-                                    <span>Tag Favorit</span>
+                                    <span>Category Favorit</span>
                                     <div class="d-flex align-items-center my-1">
-                                        <h6 class="mb-0 me-2">{{$mostProductTags->name}}</h6>
+                                        <h6 class="mb-0 me-2">{{$mostProductCategories->name}}</h6>
                                         {{--                                        <span class="text-danger">(-14%)</span>--}}
                                     </div>
-                                    <small>Tag with the most products</small>
+                                    <small>category with the most products</small>
                                 </div>
                                 <span class="badge bg-label-info rounded p-2">
-                    <i class="ti ti-tag ti-sm"></i>
+                    <i class="ti ti-category ti-sm"></i>
                   </span>
                             </div>
                         </div>
@@ -97,18 +97,18 @@
                         <div class="card-body">
                             <div class="d-flex align-items-start justify-content-between">
                                 <div class="content-left">
-                                    <span>Add Tag</span>
+                                    <span>Add category</span>
                                     <div class="d-flex align-items-center my-1">
                                         <button class="btn btn-primary"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#addTag">
-                                            <i class="ti ti-plus me-2"></i>Add Tag
+                                                data-bs-target="#addcategory">
+                                            <i class="ti ti-plus me-2"></i>Add category
                                         </button>
                                     </div>
                                     {{-- <small>&nbsp;</small> --}}
                                 </div>
                                 <span class="badge bg-label-primary rounded p-2">
-                    <i class="ti ti-tag ti-sm"></i>
+                    <i class="ti ti-category ti-sm"></i>
                   </span>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="card mb-4">
-                        <form action="{{route('admin.tag-product.index')}}" method="GET">
+                        <form action="{{route('admin.category-product.index')}}" method="GET">
                             <div class="card-body demo-vertical-spacing demo-only-element">
                                 <div class="row mb-2">
                                     <div class="col-md-10">
@@ -126,8 +126,8 @@
                                             <input
                                                     type="text"
                                                     class="form-control"
-                                                    placeholder="Cari data tag product..."
-                                                    aria-label="Cari data tag product..."
+                                                    placeholder="Cari data category product..."
+                                                    aria-label="Cari data category product..."
                                                     aria-describedby="basic-addon-search31"
                                                     name="search"
                                                     value="{{ $search }}"
@@ -149,8 +149,8 @@
 
             <!-- Teams Cards -->
             <div class="row g-4">
-                @if(count($allTags) > 0)
-                    @foreach ($allTags as $data)
+                @if(count($allCategories) > 0)
+                    @foreach ($allCategories as $data)
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="card">
                                 <div class="card-body">
@@ -174,8 +174,8 @@
                                                             <li>
                                                                 <button class="dropdown-item"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#editTag{{ $data->id }}">
-                                                                    <i class="ti ti-pencil me-2"></i>Edit Tag
+                                                                        data-bs-target="#editcategory{{ $data->id }}">
+                                                                    <i class="ti ti-pencil me-2"></i>Edit Category
                                                                 </button>
                                                             </li>
                                                             <li>
@@ -184,8 +184,8 @@
                                                             <li>
                                                                 <button class="dropdown-item text-danger"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteTag{{ $data->id }}">
-                                                                    <i class="ti ti-trash me-2"></i>Delete Tag
+                                                                        data-bs-target="#deletecategory{{ $data->id }}">
+                                                                    <i class="ti ti-trash me-2"></i>Delete Category
                                                                 </button>
                                                             </li>
                                                         </ul>
@@ -241,13 +241,13 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <!-- Tombol Previous -->
-                        @if ($allTags->onFirstPage())
+                        @if ($allCategories->onFirstPage())
                             <li class="page-item disabled">
                                 <span class="page-link" aria-hidden="true">&laquo;</span>
                             </li>
                         @else
                             <li class="page-item">
-                                <a class="page-link" href="{{ $allTags->previousPageUrl() }}" aria-label="Previous">
+                                <a class="page-link" href="{{ $allCategories->previousPageUrl() }}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -255,8 +255,8 @@
 
                         <!-- Tombol Halaman -->
                         @php
-                            $start = max($allTags->currentPage() - 2, 1);
-                            $end = min($start + 4, $allTags->lastPage());
+                            $start = max($allCategories->currentPage() - 2, 1);
+                            $end = min($start + 4, $allCategories->lastPage());
 
                             if ($end - $start < 4) {
                                 $start = max($end - 4, 1);
@@ -264,15 +264,15 @@
                         @endphp
 
                         @for ($i = $start; $i <= $end; $i++)
-                            <li class="page-item {{ $i == $allTags->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $allTags->url($i) }}">{{ $i }}</a>
+                            <li class="page-item {{ $i == $allCategories->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $allCategories->url($i) }}">{{ $i }}</a>
                             </li>
                         @endfor
 
                         <!-- Tombol Next -->
-                        @if ($allTags->hasMorePages())
+                        @if ($allCategories->hasMorePages())
                             <li class="page-item">
-                                <a class="page-link" href="{{ $allTags->nextPageUrl() }}" aria-label="Next">
+                                <a class="page-link" href="{{ $allCategories->nextPageUrl() }}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
@@ -290,19 +290,19 @@
     </div>
 
     {{-- ====================== ADD DATA ======================== --}}
-    <div class="modal fade" id="addTag" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="addcategory" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
             <div class="modal-content p-3 p-md-5">
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="text-center mb-4">
-                        <h4 class="onboarding-title text-body text-primary">Add New Tag</h4>
+                        <h4 class="onboarding-title text-body text-primary">Add New category</h4>
                         <small class="onboarding-info">
-                            Please provide the information for the new tag to better categorize your products.
+                            Please provide the information for the new category to better categorize your products.
                         </small>
 
                     </div>
-                    <form method="POST" action="{{ route('admin.tag-product.store') }}" class="row g-3">
+                    <form method="POST" action="{{ route('admin.category-product.store') }}" class="row g-3">
                         @csrf
                         <div class="col-12 col-md-12">
                             <div class="input-group input-group-merge">
@@ -313,8 +313,8 @@
                                         type="text"
                                         class="form-control"
                                         id="basic-icon-default-fullname"
-                                        placeholder="Enter tag name"
-                                        aria-label="Enter tag name"
+                                        placeholder="Enter category name"
+                                        aria-label="Enter category name"
                                         aria-describedby="basic-icon-default-fullname2"
                                         name="name"
                                 />
@@ -338,20 +338,20 @@
     </div>
 
     {{-- ====================== EDIT DATA ======================== --}}
-    @foreach ($allTags as $data)
-        <div class="modal fade" id="editTag{{$data->id}}" tabindex="-1" aria-hidden="true">
+    @foreach ($allCategories as $data)
+        <div class="modal fade" id="editcategory{{$data->id}}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-simple modal-add-new-address">
                 <div class="modal-content p-3 p-md-5">
                     <div class="modal-body">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="text-center mb-4">
-                            <h4 class="onboarding-title text-body text-primary">Edit Tag</h4>
+                            <h4 class="onboarding-title text-body text-primary">Edit category</h4>
                             <small class="onboarding-info">
-                                Please update the information for this tag to ensure your products are properly
+                                Please update the information for this category to ensure your products are properly
                                 categorized.
                             </small>
                         </div>
-                        <form method="POST" action="{{ route('admin.tag-product.update', $data->id) }}" class="row g-3">
+                        <form method="POST" action="{{ route('admin.category-product.update', $data->id) }}" class="row g-3">
                             @csrf
                             @method('PUT')
                             <div class="col-12 col-md-12">
@@ -363,8 +363,8 @@
                                             type="text"
                                             class="form-control"
                                             id="basic-icon-default-fullname"
-                                            placeholder="Enter tag name"
-                                            aria-label="Enter tag name"
+                                            placeholder="Enter category name"
+                                            aria-label="Enter category name"
                                             aria-describedby="basic-icon-default-fullname2"
                                             name="name"
                                             value="{{ $data->name }}"
@@ -391,10 +391,10 @@
     @endforeach
 
     {{-- ====================== DELETE DATA ======================== --}}
-    @foreach ($allTags as $data)
+    @foreach ($allCategories as $data)
         <div
             class="modal-onboarding modal fade animate__animated"
-            id="deleteTag{{ $data->id }}"
+            id="deletecategory{{ $data->id }}"
             tabindex="-1"
             aria-hidden="true"
         >
@@ -426,7 +426,7 @@
                             </small>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('admin.tag-product.destroy', $data->id) }}">
+                    <form method="POST" action="{{ route('admin.category-product.destroy', $data->id) }}">
                         @csrf
                         @method('DELETE')
                         <div class="modal-footer border-0">
