@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TagProductController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,12 @@ Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->n
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::middleware(['role:Admin'])->group(function () {
-    Route::prefix('admin')
+    Route::prefix('admin')->name('admin.')
         ->group(function () {
-            Route::get('/dashboard-penjualan', [DashboardPenjualanController::class, 'index'])->name('admin.dashboard-penjualan');
+            Route::get('/dashboard-penjualan', [DashboardPenjualanController::class, 'index'])->name('dashboard-penjualan');
+            Route::get('/tag-product', [TagProductController::class, 'index'])->name('tag-product.index');
+            Route::post('/tag-product/store', [TagProductController::class, 'store'])->name('tag-product.store');
+            Route::put('/tag-product/{id}/update', [TagProductController::class, 'update'])->name('tag-product.update');
+            Route::delete('/tag-product/{id}/destroy', [TagProductController::class, 'destroy'])->name('tag-product.destroy');
         });
 });

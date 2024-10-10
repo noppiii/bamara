@@ -159,7 +159,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil',
+                title: 'Success',
                 text: "{{ Session::get('success_message_create') }}",
                 showConfirmButton: false,
                 timer: 3000 // milliseconds
@@ -171,7 +171,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil',
+                title: 'Success',
                 text: "{{ Session::get('success_message_update') }}",
                 showConfirmButton: false,
                 timer: 3000 // milliseconds
@@ -183,7 +183,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil',
+                title: 'Success',
                 text: "{{ Session::get('success_message_delete') }}",
                 showConfirmButton: false,
                 timer: 3000 // milliseconds
