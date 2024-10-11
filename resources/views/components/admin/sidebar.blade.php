@@ -83,6 +83,11 @@
                         <div data-i18n="Category">Category</div>
                     </a>
                 </li>
+                <li class="menu-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                    <a href="{{route('admin.product.index')}}" class="menu-link">
+                        <div data-i18n="Product">Product</div>
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="menu-item">

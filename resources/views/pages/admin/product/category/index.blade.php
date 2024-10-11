@@ -1,9 +1,9 @@
 @extends('components.admin.main')
 @section('title')
-    category Product | {{ config('app.name') }}
+    Category Product | {{ config('app.name') }}
 @endsection
 @section('pages')
-    category Product Admin
+    Category Product Admin
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -240,7 +240,6 @@
             <div class="row mt-4">
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
-                        <!-- Tombol Previous -->
                         @if ($allCategories->onFirstPage())
                             <li class="page-item disabled">
                                 <span class="page-link" aria-hidden="true">&laquo;</span>

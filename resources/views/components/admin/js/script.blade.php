@@ -9,6 +9,7 @@
 
 <script src="{{ asset('admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/i18n/i18n.js') }}"></script>
+<script src="{{ asset('admin/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 
 <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
 {{-- <script src="{{ asset('admin/assets/form-builder/form-builder.min.js') }}"></script>
@@ -21,6 +22,7 @@
 <script src="{{ asset('admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 <script src="{{ asset('admin/assets/js/tables-datatables-basic.js') }}"></script>
 <!-- Vendors JS -->
+<script src="{{asset('admin/assets/vendor/libs/dropzone/dropzone.js')}}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/cleavejs/cleave.js') }}"></script>
@@ -30,22 +32,22 @@
 {{-- <script src="{{ asset('admin/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script> --}}
 <script src="{{asset('admin/assets/vendor/libs/autosize/autosize.js')}}"></script>
 
+<!-- Main JS -->
+<script src="{{ asset('admin/assets/js/main.js') }}"></script>
+
 <!-- Page JS -->
 <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
 <script src="{{ asset('admin/assets/js/dashboards-crm.js') }}"></script>
 <script src="{{ asset('admin/assets/js/tables-datatables-advanced.js') }}"></script>
+<script src="{{asset('admin/assets/js/forms-file-upload.js')}}"></script>
 <!-- Page JS -->
 <script src="{{asset('admin/assets/js/forms-extras.js')}}"></script>
 
 <script src="{{ asset('admin/assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
 
-<!-- Main JS -->
-<script src="{{ asset('admin/assets/js/main.js') }}"></script>
-
 <!-- Vendors JS -->
 <script src="{{ asset('admin/assets/vendor/libs/tagify/tagify.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
-<script src="{{ asset('admin/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/bloodhound/bloodhound.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/fullcalendar/fullcalendar.js') }}"></script>
 <script src="{{ asset('admin/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
