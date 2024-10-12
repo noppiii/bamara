@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\DashboardPenjualanController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -55,5 +56,10 @@ Route::middleware(['role:Admin'])->group(function () {
             Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
             Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
             Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+
+            Route::get('/discount', [DiscountController::class, 'index'])->name('discount.index');
+            Route::post('/discount/store', [DiscountController::class, 'store'])->name('discount.store');
+            Route::put('/discount/{id}/update', [DiscountController::class, 'update'])->name('discount.update');
+            Route::delete('/discount/{id}/destroy', [DiscountController::class, 'destroy'])->name('discount.destroy');
         });
 });

@@ -66,11 +66,11 @@
             <span class="menu-header-text">Product</span>
         </li>
         <!-- Dashboards -->
-        <li class="menu-item {{ Str::is(['admin/tag-product*', 'admin/category-product*', 'admin/product*'], request()->path()) ? 'active open' : '' }}">
+        <li class="menu-item {{ Str::is(['admin/tag-product*', 'admin/category-product*', 'admin/product*', 'admin/discount*'], request()->path()) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-bottle"></i>
                 <div data-i18n="Product">Product</div>
-                <div class="badge bg-label-primary rounded-pill ms-auto">3</div>
+                <div class="badge bg-label-primary rounded-pill ms-auto">4</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ request()->is('admin/tag-product*') ? 'active' : '' }}">
@@ -86,6 +86,11 @@
                 <li class="menu-item {{ request()->is('admin/product*') ? 'active' : '' }}">
                     <a href="{{route('admin.product.index')}}" class="menu-link">
                         <div data-i18n="Product">Product</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('admin/discount*') ? 'active' : '' }}">
+                    <a href="{{route('admin.discount.index')}}" class="menu-link">
+                        <div data-i18n="Discount">Discount</div>
                     </a>
                 </li>
             </ul>
