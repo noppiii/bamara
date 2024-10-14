@@ -37,6 +37,7 @@ Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCa
 Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->name('verify.email');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::get('/wishlist/{userId}/{productId}/store', [WishlistController::class, 'store'])->name('wishlist.store')->middleware('wishlist');
 Route::get('/wishlist/{userId}/{productId}/delete', [WishlistController::class, 'destroy'])->name('wishlist.destroy')->middleware('wishlist');
 

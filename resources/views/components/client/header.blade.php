@@ -61,7 +61,7 @@
                                 <a href="{{route('login')}}"><i class="icon-user"></i></a>
                             </div>
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
-                                <a href="wishlist.html"><i class="icon-heart icons"></i></a>
+                                <a href="{{route('wishlist')}}"><i class="icon-heart icons"></i></a>
                             </div>
                             <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
                                 <button><i><img src="{{asset('client/assets/img/icon/cart-1.svg')}}" alt=""></i>
