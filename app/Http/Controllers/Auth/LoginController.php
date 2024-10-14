@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -59,6 +60,23 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->with("error_message", "Invalid email or password. Please enter correct information!");
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            $request->session()->flush();
+
+            return redirect()->route('home')->with('success_message', 'You have successfully logged out.');
+        } catch (Exception $e) {
+            return redirect()->route('home')->with('error_message', 'An error occurred during logout. Please try again.');
+        }
     }
 
 }

@@ -14,9 +14,9 @@ class ProductImageSeeder extends Seeder
     public function run(): void
     {
         ProductImage::insert([
-            ['product_id' => 1, 'image_path' => 'images/product1_image1.jpg'],
-            ['product_id' => 1, 'image_path' => 'images/product1_image2.jpg'],
-            ['product_id' => 1, 'image_path' => 'images/product1_image3.jpg'],
+            ['product_id' => 1, 'image_path' => 'products1-min.jpg'],
+            ['product_id' => 1, 'image_path' => 'products21-min.jpg'],
+            ['product_id' => 1, 'image_path' => 'products35-min.jpg'],
         ]);
 
         ProductImage::insert([

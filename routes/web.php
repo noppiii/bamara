@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
@@ -34,6 +35,7 @@ Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->na
 Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->name('verify.email');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/shop/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')

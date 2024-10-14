@@ -310,13 +310,22 @@
                                             <div class="col">
                                                 <div class="tpproduct p-relative mb-20">
                                                     <div class="tpproduct__thumb p-relative text-center">
-                                                        <a href="#"><img
-                                                                src="{{asset('client/assets/img/product/products21-min.jpg')}}"
-                                                                alt=""></a>
-                                                        <a class="tpproduct__thumb-img"
-                                                           href="shop-details-grid.html"><img
-                                                                src="{{asset('client/assets/img/product/products1-min.jpg')}}"
-                                                                alt=""></a>
+                                                        @php
+                                                            $productImages = $product->images->take(2);
+                                                        @endphp
+
+                                                        @if($productImages->count() >= 2)
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            </a>
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                            </a>
+                                                        @else($productImages->count() == 1)
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            </a>
+                                                        @endif
                                                         @if($product->discount)
                                                             <div class="tpproduct__info bage">
                                                                 <span class="tpproduct__info-discount bage__discount">-{{ $product->discount->percentage }}%</span>
@@ -330,15 +339,11 @@
                                                         <div class="tpproduct__shopping">
                                                             <a class="tpproduct__shopping-wishlist"
                                                                href="wishlist.html"><i class="icon-heart icons"></i></a>
-                                                            <a class="tpproduct__shopping-wishlist" href="#"><i
-                                                                    class="icon-layers"></i></a>
-                                                            <a class="tpproduct__shopping-cart" href="#"><i
-                                                                    class="icon-eye"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="tpproduct__content">
                                                         <h4 class="tpproduct__title">
-                                                            <a href="shop-details-top-.html">
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 {{$product->name}}
                                                             </a>
                                                         </h4>
@@ -404,13 +409,22 @@
                                             <div class="col">
                                                 <div class="tpproduct p-relative mb-20">
                                                     <div class="tpproduct__thumb p-relative text-center">
-                                                        <a href="#"><img
-                                                                src="{{asset('client/assets/img/product/products21-min.jpg')}}"
-                                                                alt=""></a>
-                                                        <a class="tpproduct__thumb-img"
-                                                           href="shop-details-grid.html"><img
-                                                                src="{{asset('client/assets/img/product/products1-min.jpg')}}"
-                                                                alt=""></a>
+                                                        @php
+                                                            $productImages = $product->images->take(2);
+                                                        @endphp
+
+                                                        @if($productImages->count() >= 2)
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            </a>
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                            </a>
+                                                        @else($productImages->count() == 1)
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            </a>
+                                                        @endif
                                                         <div class="tpproduct__info bage">
                                                             @if($product->discount)
                                                                 <span
@@ -425,15 +439,11 @@
                                                             <a class="tpproduct__shopping-wishlist"
                                                                href="wishlist.html"><i
                                                                     class="icon-heart icons"></i></a>
-                                                            <a class="tpproduct__shopping-wishlist" href="#"><i
-                                                                    class="icon-layers"></i></a>
-                                                            <a class="tpproduct__shopping-cart" href="#"><i
-                                                                    class="icon-eye"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="tpproduct__content">
                                                         <h4 class="tpproduct__title">
-                                                            <a href="shop-details-top-.html">
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 {{$product->name}}
                                                             </a>
                                                         </h4>
@@ -501,11 +511,23 @@
                                             <div
                                                 class="tplist__product d-flex align-items-center justify-content-between mb-20">
                                                 <div class="tplist__product-img">
-                                                    <a href="#" class="tplist__product-img-one"><img
-                                                            src="{{asset('client/assets/img/product/products1-min.jpg')}}" width="250px;" alt=""></a>
-                                                    <a class="tplist__product-img-two" href="shop-details.html"><img
-                                                            src="{{asset('client/assets/img/product/products1-min.jpg')}}" width="250px;" alt=""></a>
-                                                    @if($product->discount)
+                                                    @php
+                                                        $productImages = $product->images->take(2);
+                                                    @endphp
+
+                                                    @if($productImages->count() >= 2)
+                                                        <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                            <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                        </a>
+                                                        <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
+                                                            <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                        </a>
+                                                    @else($productImages->count() == 1)
+                                                        <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                            <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                        </a>
+                                                    @endif
+                                                @if($product->discount)
                                                         <div class="tpproduct__info bage">
                                                             <span class="tpproduct__info-discount bage__discount">-{{ $product->discount->percentage }}%</span>
 
@@ -517,8 +539,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="tplist__content">
-                                                    <span>500 gram</span>
-                                                    <h4 class="tplist__content-title"><a href="#">
+                                                    <h4 class="tplist__content-title"><a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                             {{$product->name}}
                                                         </a></h4>
                                                     @php
@@ -565,7 +586,6 @@
                                                     <button class="tp-btn-2 mb-10">Add to cart</button>
                                                     <div class="tplist__shopping">
                                                         <a href="#"><i class="icon-heart icons"></i> wishlist</a>
-                                                        <a href="#"><i class="icon-layers"></i>Compare</a>
                                                     </div>
                                                 </div>
                                             </div>
