@@ -13,6 +13,8 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+        $user = $request->session()->get('user');
+
         $allTagProduct = TagProduct::all();
         $allCategoryProduct = CategoryProduct::all();
 
@@ -45,7 +47,7 @@ class ShopController extends Controller
                 break;
         }
 
-        return view('pages.client.shop.shop', compact('allTagProduct', 'allCategoryProduct', 'products', 'filter'));
+        return view('pages.client.shop.shop', compact('user', 'allTagProduct', 'allCategoryProduct', 'products', 'filter'));
     }
 
     public function detail(string $slug)

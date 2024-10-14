@@ -285,15 +285,18 @@
                                                     <ul class="list">
                                                         <li data-value="default"
                                                             class="option {{ $filter == 'default' ? 'selected' : '' }}">
-                                                            <a href="{{ route('shop', ['filter' => 'default']) }}">Default sorting</a>
+                                                            <a href="{{ route('shop', ['filter' => 'default']) }}">Default
+                                                                sorting</a>
                                                         </li>
                                                         <li data-value="popular"
                                                             class="option {{ $filter == 'popular' ? 'selected' : '' }}">
-                                                            <a href="{{ route('shop', ['filter' => 'popular']) }}">Sort by popularity</a>
+                                                            <a href="{{ route('shop', ['filter' => 'popular']) }}">Sort
+                                                                by popularity</a>
                                                         </li>
                                                         <li data-value="hot-promo"
                                                             class="option {{ $filter == 'hot-promo' ? 'selected' : '' }}">
-                                                            <a href="{{ route('shop', ['filter' => 'hot-promo']) }}">Hot Promo</a>
+                                                            <a href="{{ route('shop', ['filter' => 'hot-promo']) }}">Hot
+                                                                Promo</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -316,14 +319,21 @@
 
                                                         @if($productImages->count() >= 2)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                             </a>
-                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
+                                                               class="tpproduct__thumb-img">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 2">
                                                             </a>
                                                         @else($productImages->count() == 1)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                             </a>
                                                         @endif
                                                         @if($product->discount)
@@ -337,8 +347,21 @@
                                                             </div>
                                                         @endif
                                                         <div class="tpproduct__shopping">
-                                                            <a class="tpproduct__shopping-wishlist"
-                                                               href="wishlist.html"><i class="icon-heart icons"></i></a>
+                                                            @php
+                                                                $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                            @endphp
+
+                                                            @if($isInWishlist)
+                                                                <a class="tpproduct__shopping-wishlist"
+                                                                   href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart1 icons"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="tpproduct__shopping-wishlist"
+                                                                   href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart icons"></i>
+                                                                </a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="tpproduct__content">
@@ -415,14 +438,21 @@
 
                                                         @if($productImages->count() >= 2)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                             </a>
-                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                            <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
+                                                               class="tpproduct__thumb-img">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 2">
                                                             </a>
                                                         @else($productImages->count() == 1)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                                <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                                <img
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                             </a>
                                                         @endif
                                                         <div class="tpproduct__info bage">
@@ -436,9 +466,21 @@
                                                         </div>
                                                         @endif
                                                         <div class="tpproduct__shopping">
-                                                            <a class="tpproduct__shopping-wishlist"
-                                                               href="wishlist.html"><i
-                                                                    class="icon-heart icons"></i></a>
+                                                            @php
+                                                                $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                            @endphp
+
+                                                            @if($isInWishlist)
+                                                                <a class="tpproduct__shopping-wishlist"
+                                                                   href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart1 icons"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="tpproduct__shopping-wishlist"
+                                                                   href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart icons"></i>
+                                                                </a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="tpproduct__content">
@@ -517,17 +559,24 @@
 
                                                     @if($productImages->count() >= 2)
                                                         <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                            <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            <img
+                                                                src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                width="250px;" alt="Product Image 1">
                                                         </a>
-                                                        <a href="{{route('shop.detail', ['slug' => $product->slug])}}" class="tpproduct__thumb-img">
-                                                            <img src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}" width="250px;" alt="Product Image 2">
+                                                        <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
+                                                           class="tpproduct__thumb-img">
+                                                            <img
+                                                                src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                width="250px;" alt="Product Image 2">
                                                         </a>
                                                     @else($productImages->count() == 1)
                                                         <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
-                                                            <img src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}" width="250px;" alt="Product Image 1">
+                                                            <img
+                                                                src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                width="250px;" alt="Product Image 1">
                                                         </a>
                                                     @endif
-                                                @if($product->discount)
+                                                    @if($product->discount)
                                                         <div class="tpproduct__info bage">
                                                             <span class="tpproduct__info-discount bage__discount">-{{ $product->discount->percentage }}%</span>
 
@@ -539,7 +588,8 @@
                                                     @endif
                                                 </div>
                                                 <div class="tplist__content">
-                                                    <h4 class="tplist__content-title"><a href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                    <h4 class="tplist__content-title"><a
+                                                            href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                             {{$product->name}}
                                                         </a></h4>
                                                     @php
@@ -577,15 +627,31 @@
                                                     </ul>
                                                 </div>
                                                 <div class="tplist__price justify-content-end">
-                                                    <h4 class="tplist__instock">Availability: <span>{{$product->stock}}</span></h4>
-                                                    <h3 class="tplist__count mb-15"> <span>Rp{{ number_format($product->price - ($product->discount ? ($product->price * ($product->discount->percentage / 100)) : 0), 0, ',', '.') }}</span>
+                                                    <h4 class="tplist__instock">Availability:
+                                                        <span>{{$product->stock}}</span></h4>
+                                                    <h3 class="tplist__count mb-15">
+                                                        <span>Rp{{ number_format($product->price - ($product->discount ? ($product->price * ($product->discount->percentage / 100)) : 0), 0, ',', '.') }}</span>
                                                         @if($product->discount)
                                                             <del style="color: grey;">
                                                                 Rp{{ number_format($product->price, 0, ',', '.') }}</del>
                                                         @endif</h3>
                                                     <button class="tp-btn-2 mb-10">Add to cart</button>
                                                     <div class="tplist__shopping">
-                                                        <a href="#"><i class="icon-heart icons"></i> wishlist</a>
+                                                        @php
+                                                            $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                        @endphp
+
+                                                        @if($isInWishlist)
+                                                            <a class="tpproduct__shopping-wishlist"
+                                                               href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                <i class="icon-heart1 icons"></i> Added In Wishlist
+                                                            </a>
+                                                        @else
+                                                            <a class="tpproduct__shopping-wishlist"
+                                                               href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                <i class="icon-heart icons"></i> Wishlist
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

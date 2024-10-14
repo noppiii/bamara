@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TagProductController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,8 @@ Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCa
 Route::get('/verify-email/{token}', [VerifyController::class, 'verifyEmail'])->name('verify.email');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{slug}', [ShopController::class, 'detail'])->name('shop.detail');
+Route::get('/wishlist/{userId}/{productId}/store', [WishlistController::class, 'store'])->name('wishlist.store')->middleware('wishlist');
+Route::get('/wishlist/{userId}/{productId}/delete', [WishlistController::class, 'destroy'])->name('wishlist.destroy')->middleware('wishlist');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')
