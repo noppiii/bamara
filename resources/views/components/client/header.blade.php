@@ -57,9 +57,11 @@
                             <div class="header__info-search tpcolor__purple ml-10">
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
                             </div>
-                            <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="{{route('login')}}"><i class="icon-user"></i></a>
-                            </div>
+                            @if(!$user)
+                                <div class="header__info-user tpcolor__yellow ml-10">
+                                    <a href="{{route('login')}}"><i class="icon-user"></i></a>
+                                </div>
+                            @endif
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="{{route('wishlist')}}"><i class="icon-heart icons"></i></a>
                             </div>

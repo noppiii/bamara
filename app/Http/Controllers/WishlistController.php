@@ -12,7 +12,13 @@ class WishlistController extends Controller
     public function index(Request $request)
     {
         $user = $request->session()->get('user');
-        return view('pages.client.wishlist.wishlist', compact('user'));
+        if ($user) {
+            $wishlists = Wishlist::where('user_id', $user->id)->get();
+        } else {
+            $wishlists = collect();
+        }
+//        dd($wishlist);
+        return view('pages.client.wishlist.wishlist', compact('user', 'wishlists'));
     }
     public function store($userId, $productId)
     {

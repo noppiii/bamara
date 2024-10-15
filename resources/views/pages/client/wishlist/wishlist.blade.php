@@ -45,60 +45,60 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="shop-details.html">
-                                                <img src="{{asset('client/assets/img/product/products22-min.jpg')}}" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="product-name">
-                                            <a href="shop-details.html">Summer Breakfast For Healthy Morning</a>
-                                        </td>
-                                        <td class="product-price">
-                                            <span class="amount">$130.00</span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <span class="cart-minus">-</span>
-                                            <input class="cart-input" type="text" value="1">
-                                            <span class="cart-plus">+</span>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="amount">$130.00</span>
-                                        </td>
-                                        <td class="product-add-to-cart">
-                                            <button class="tp-btn tp-color-btn  tp-wish-cart banner-animation">Add To Cart</button>
-                                        </td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <a href="shop-details.html">
-                                                <img src="{{asset('client/assets/img/product/products26-min.jpg')}}"  alt="">
-                                            </a>
-                                        </td>
-                                        <td class="product-name">
-                                            <a href="shop-details.html">The Best Great Benefits Of Fresh Beef</a>
-                                        </td>
-                                        <td class="product-price">
-                                            <span class="amount">$120.50</span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <span class="cart-minus">-</span>
-                                            <input class="cart-input" type="text" value="1">
-                                            <span class="cart-plus">+</span>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="amount">$120.50</span>
-                                        </td>
-                                        <td class="product-add-to-cart">
-                                            <button class="tp-btn tp-color-btn tp-wish-cart banner-animation">Add To Cart</button>
-                                        </td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
+                                    @foreach($wishlists as $wishlist)
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="{{route('shop.detail',['slug' => $wishlist->product->slug])}}">
+                                                    <img
+                                                        src="{{ asset('store/product/image/' . $wishlist->product->images->firstOrFail()->image_path) }}"
+                                                        alt="">
+                                                </a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a href="{{route('shop.detail',['slug' => $wishlist->product->slug])}}">{{$wishlist->product->name}}</a>
+                                            </td>
+                                            <td class="product-price">
+                                                @if($wishlist->product->discount)
+                                                    @php
+                                                        if($wishlist->product->discount->percentage) {
+                                                            $discountedPrice = $wishlist->product->price - ($wishlist->product->price * $wishlist->product->discount->percentage / 100);
+                                                        } elseif($wishlist->product->discount->amount) {
+                                                            $discountedPrice = $wishlist->product->price - $wishlist->product->discount->amount;
+                                                        } else {
+                                                            $discountedPrice = $wishlist->product->price;
+                                                        }
+                                                    @endphp
+                                                    <span
+                                                        class="amount">Rp. {{ number_format($discountedPrice, 0, ',', '.') }}</span>
+                                                    <del>
+                                                        Rp. {{ number_format($wishlist->product->price, 0, ',', '.') }}</del>
+                                                @else
+                                                    <span
+                                                        class="amount">Rp. {{ number_format($wishlist->product->price, 0, ',', '.') }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="product-quantity">
+                                                <span class="cart-minus" onclick="updateQuantity(this, -1)">-</span>
+                                                <input class="cart-input" type="text" value="1"
+                                                       data-price="{{ $discountedPrice }}"
+                                                       oninput="updateSubtotal(this)">
+                                                <span class="cart-plus" onclick="updateQuantity(this, 1)">+</span>
+                                            </td>
+                                            <td class="product-subtotal">
+                                                <span
+                                                    class="amount">Rp. {{ number_format($discountedPrice, 0, ',', '.') }}</span>
+                                            </td>
+                                            <td class="product-add-to-cart">
+                                                <button class="tp-btn tp-color-btn  tp-wish-cart banner-animation">Add
+                                                    To Cart
+                                                </button>
+                                            </td>
+                                            <td class="product-remove">
+                                                <a href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $wishlist->product->id]) }}"><i
+                                                        class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -111,7 +111,8 @@
 
 
         <!-- feature-area-start -->
-        <section class="feature-area mainfeature__bg pt-50 pb-40" data-background="{{asset('client/assets/img/shape/footer-shape-1.svg')}}">
+        <section class="feature-area mainfeature__bg pt-50 pb-40"
+                 data-background="{{asset('client/assets/img/shape/footer-shape-1.svg')}}">
             <div class="container">
                 <div class="mainfeature__border pb-15">
                     <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
@@ -177,4 +178,30 @@
         <!-- feature-area-end -->
 
     </main>
+    <script>
+        function updateSubtotal(input) {
+            let quantity = parseInt(input.value);
+            let price = parseFloat(input.getAttribute('data-price'));
+
+            if (isNaN(quantity) || quantity <= 0) {
+                quantity = 1;
+                input.value = 1;
+            }
+
+            let subtotal = quantity * price;
+
+            let subtotalElement = input.closest('tr').querySelector('.product-subtotal .amount');
+            subtotalElement.innerHTML = `Rp. ${subtotal.toLocaleString('id-ID', {minimumFractionDigits: 0})}`;
+        }
+
+        function updateQuantity(element, increment) {
+            let input = element.closest('td').querySelector('.cart-input');
+            let quantity = parseInt(input.value) + increment;
+
+            if (quantity > 0) {
+                input.value = quantity;
+                updateSubtotal(input);
+            }
+        }
+    </script>
 @endsection
