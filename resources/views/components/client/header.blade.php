@@ -67,7 +67,7 @@
                             </div>
                             <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
                                 <button><i><img src="{{asset('client/assets/img/icon/cart-1.svg')}}" alt=""></i>
-                                    <span>{{$carts->count()}}</span>
+                                    <span>{{$latestCarts->count()}}</span>
                                 </button>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                         </div>
                         <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
                             <button><i><img src="{{asset('client/assets/img/icon/cart-1.svg')}}" alt=""></i>
-                                <span>{{$carts->count()}}</span>
+                                <span>{{$latestCarts->count()}}</span>
                             </button>
                         </div>
                     </div>

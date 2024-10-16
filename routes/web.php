@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
@@ -44,6 +45,7 @@ Route::get('/wishlist/{userId}/{productId}/delete', [WishlistController::class, 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/{userId}/{productId}/store', [CartController::class, 'store'])->name('cart.store')->middleware('cart');
 Route::get('/cart/{userId}/{productId}/delete', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('cart');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('checkout');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')

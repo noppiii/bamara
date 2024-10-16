@@ -120,7 +120,7 @@
                                             <li>Subtotal <span>Rp. {{ number_format($total, 0, ',', '.') }}</span></li>
                                             <li>Total <span>Rp. {{ number_format($total, 0, ',', '.') }}</span></li>
                                         </ul>
-                                        <a href="checkout.html" class="tp-btn tp-color-btn banner-animation">Proceed to Checkout</a>
+                                        <a href="{{route('checkout')}}" class="tp-btn tp-color-btn banner-animation">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +133,14 @@
 
 
         <!-- feature-area-start -->
-        <section class="feature-area mainfeature__bg pt-50 pb-40" data-background="assets/img/shape/footer-shape-1.svg">
+        <section class="feature-area mainfeature__bg pt-50 pb-40" data-background="{{asset('client/assets/img/shape/footer-shape-1.svg')}}">
             <div class="container">
                 <div class="mainfeature__border pb-15">
                     <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="assets/img/icon/feature-icon-1.svg" alt="">
+                                    <img src="{{asset('client/assets/img/icon/feature-icon-1.svg')}}" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Fast Delivery</h4>
@@ -151,7 +151,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="assets/img/icon/feature-icon-2.svg" alt="">
+                                    <img src="{{asset('client/assets/img/icon/feature-icon-2.svg')}}" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">safe payment</h4>
@@ -162,7 +162,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="assets/img/icon/feature-icon-3.svg" alt="">
+                                    <img src="{{asset('client/assets/img/icon/feature-icon-3.svg')}}" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Online Discount</h4>
@@ -173,7 +173,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="assets/img/icon/feature-icon-4.svg" alt="">
+                                    <img src="{{asset('client/assets/img/icon/feature-icon-4.svg')}}" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Help Center</h4>
@@ -184,7 +184,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="assets/img/icon/feature-icon-5.svg" alt="">
+                                    <img src="{{asset('client/assets/img/icon/feature-icon-5.svg')}}" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Curated items</h4>
