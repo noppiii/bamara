@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\CheckRole::class,
         'wishlist' => \App\Http\Middleware\WishlistMiddleware::class,
+        'cart' => \App\Http\Middleware\CartMiddleware::class,
     ];
 }

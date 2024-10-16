@@ -1,12 +1,13 @@
 @extends('components.client.main')
 @section('title')
-    Wishlits | {{ config('app.name') }}
+    Cart | {{ config('app.name') }}
 @endsection
 @section('pages')
-    Wishlits
+    Cart
 @endsection
 @section('content')
     <main>
+
         <!-- breadcrumb-area-start -->
         <div class="breadcrumb__area pt-5 pb-5">
             <div class="container">
@@ -16,7 +17,7 @@
                             <div class="tp-breadcrumb__list">
                                 <span class="tp-breadcrumb__active"><a href="{{route('home')}}">Home</a></span>
                                 <span class="dvdr">/</span>
-                                <span>Wishlist</span>
+                                <span>Cart</span>
                             </div>
                         </div>
                     </div>
@@ -25,8 +26,8 @@
         </div>
         <!-- breadcrumb-area-end -->
 
-        <!-- wishlist-area-start -->
-        <div class="cart-area pb-80">
+        <!-- cart area -->
+        <section class="cart-area pb-80">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -40,77 +41,106 @@
                                         <th class="product-price">Unit Price</th>
                                         <th class="product-quantity">Quantity</th>
                                         <th class="product-subtotal">Total</th>
-                                        <th class="product-add-to-cart">Add To Cart</th>
                                         <th class="product-remove">Remove</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($wishlists as $wishlist)
-                                        @php
-                                            if($wishlist->product->discount) {
-                                                if($wishlist->product->discount->percentage) {
-                                                    $discountedPrice = $wishlist->product->price - ($wishlist->product->price * $wishlist->product->discount->percentage / 100);
-                                                } elseif($wishlist->product->discount->amount) {
-                                                    $discountedPrice = $wishlist->product->price - $wishlist->product->discount->amount;
-                                                } else {
-                                                    $discountedPrice = $wishlist->product->price;
-                                                }
-                                            } else {
-                                                $discountedPrice = $wishlist->product->price;
-                                            }
-                                        @endphp
+                                    @php
+                                        $total = 0;
+                                    @endphp
+
+                                    @foreach($carts as $cart)
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <a href="{{route('shop.detail',['slug' => $wishlist->product->slug])}}">
-                                                    <img src="{{ asset('store/product/image/' . $wishlist->product->images->firstOrFail()->image_path) }}" alt="">
+                                                <a href="{{ route('shop.detail', ['slug' => $cart->product->slug]) }}">
+                                                    <img src="{{ asset('store/product/image/' . $cart->product->images->firstOrFail()->image_path) }}" alt="">
                                                 </a>
                                             </td>
                                             <td class="product-name">
-                                                <a href="{{route('shop.detail',['slug' => $wishlist->product->slug])}}">{{$wishlist->product->name}}</a>
+                                                <a href="{{ route('shop.detail', ['slug' => $cart->product->slug]) }}">{{ $cart->product->name }}</a>
                                             </td>
                                             <td class="product-price">
-                                                <span class="amount">Rp. {{ number_format($discountedPrice, 0, ',', '.') }}</span>
+                                                @if($cart->product->discount)
+                                                    @php
+                                                        if($cart->product->discount->percentage) {
+                                                            $discountedPrice = $cart->product->price - ($cart->product->price * $cart->product->discount->percentage / 100);
+                                                        } elseif($cart->product->discount->amount) {
+                                                            $discountedPrice = $cart->product->price - $cart->product->discount->amount;
+                                                        } else {
+                                                            $discountedPrice = $cart->product->price;
+                                                        }
+                                                    @endphp
+                                                    <span class="amount">Rp. {{ number_format($discountedPrice, 0, ',', '.') }}</span>
+                                                    <del>Rp. {{ number_format($cart->product->price, 0, ',', '.') }}</del>
+                                                @else
+                                                    <span class="amount">Rp. {{ number_format($cart->product->price, 0, ',', '.') }}</span>
+                                                @endif
                                             </td>
                                             <td class="product-quantity">
-                                                <input class="cart-input" type="number" value="1"
-                                                       data-price="{{ $discountedPrice }}"
-                                                       oninput="updateSubtotal(this)">
+                                                <input class="cart-input" type="number" value="{{ $cart->quantity }}"
+                                                       data-price="{{ $discountedPrice }}" oninput="updateSubtotal(this)">
                                             </td>
                                             <td class="product-subtotal">
-                                                <span class="amount">Rp. {{ number_format($discountedPrice, 0, ',', '.') }}</span>
-                                            </td>
-                                            <td class="product-add-to-cart">
-                                                <button class="tp-btn tp-color-btn tp-wish-cart banner-animation"
-                                                        onclick="addToCart({{ $user->id }}, {{ $wishlist->product->id }}, this.closest('tr').querySelector('.cart-input').value, this.closest('tr'))">
-                                                    Add To Cart
-                                                </button>
+                                                @php
+                                                    $subtotal = $discountedPrice * $cart->quantity;
+                                                    $total += $subtotal;
+                                                @endphp
+                                                <span class="amount">Rp. {{ number_format($subtotal, 0, ',', '.') }}</span>
                                             </td>
                                             <td class="product-remove">
-                                                <a href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $wishlist->product->id]) }}"><i class="fa fa-times"></i></a>
+                                                <a href="{{ route('cart.destroy', ['userId' => $user->id, 'productId' => $cart->product->id]) }}">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col-12">--}}
+{{--                                    <div class="coupon-all">--}}
+{{--                                        <div class="coupon">--}}
+{{--                                            <input id="coupon_code" class="input-text" name="coupon_code" value=""--}}
+{{--                                                   placeholder="Coupon code" type="text">--}}
+{{--                                            <button class="tp-btn tp-color-btn banner-animation" name="apply_coupon" type="submit">Apply--}}
+{{--                                                Coupon</button>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="coupon2">--}}
+{{--                                            <button class="tp-btn tp-color-btn banner-animation" name="update_cart" type="submit">Update cart</button>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <div class="row justify-content-end">
+                                <div class="col-md-5">
+                                    <div class="cart-page-total">
+                                        <h2>Cart totals</h2>
+                                        <ul class="mb-20">
+                                            <li>Subtotal <span>Rp. {{ number_format($total, 0, ',', '.') }}</span></li>
+                                            <li>Total <span>Rp. {{ number_format($total, 0, ',', '.') }}</span></li>
+                                        </ul>
+                                        <a href="checkout.html" class="tp-btn tp-color-btn banner-animation">Proceed to Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- wishlist-area-end-->
+        </section>
+        <!-- cart area end-->
 
 
         <!-- feature-area-start -->
-        <section class="feature-area mainfeature__bg pt-50 pb-40"
-                 data-background="{{asset('client/assets/img/shape/footer-shape-1.svg')}}">
+        <section class="feature-area mainfeature__bg pt-50 pb-40" data-background="assets/img/shape/footer-shape-1.svg">
             <div class="container">
                 <div class="mainfeature__border pb-15">
                     <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="{{asset('client/assets/img/icon/feature-icon-1.svg')}}" alt="">
+                                    <img src="assets/img/icon/feature-icon-1.svg" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Fast Delivery</h4>
@@ -121,7 +151,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="{{asset('client/assets/img/icon/feature-icon-2.svg')}}" alt="">
+                                    <img src="assets/img/icon/feature-icon-2.svg" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">safe payment</h4>
@@ -132,7 +162,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="{{asset('client/assets/img/icon/feature-icon-3.svg')}}" alt="">
+                                    <img src="assets/img/icon/feature-icon-3.svg" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Online Discount</h4>
@@ -143,7 +173,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="{{asset('client/assets/img/icon/feature-icon-4.svg')}}" alt="">
+                                    <img src="assets/img/icon/feature-icon-4.svg" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Help Center</h4>
@@ -154,7 +184,7 @@
                         <div class="col">
                             <div class="mainfeature__item text-center mb-30">
                                 <div class="mainfeature__icon">
-                                    <img src="{{asset('client/assets/img/icon/feature-icon-5.svg')}}" alt="">
+                                    <img src="assets/img/icon/feature-icon-5.svg" alt="">
                                 </div>
                                 <div class="mainfeature__content">
                                     <h4 class="mainfeature__title">Curated items</h4>
@@ -182,6 +212,18 @@
             let subtotal = quantity * price;
             let subtotalElement = input.closest('tr').querySelector('.product-subtotal .amount');
             subtotalElement.innerHTML = `Rp. ${subtotal.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('.product-subtotal .amount').forEach(function(subtotalElement) {
+                let subtotalText = subtotalElement.innerHTML.replace('Rp. ', '').replace('.', '').replace(',', '.');
+                total += parseFloat(subtotalText);
+            });
+
+            document.querySelector('.cart-page-total ul li:last-child span').innerHTML = `Rp. ${total.toLocaleString('id-ID', { minimumFractionDigits: 0 })}`;
         }
 
         function updateQuantity(element, increment) {
@@ -193,58 +235,5 @@
                 updateSubtotal(input);
             }
         }
-
-        function addToCart(userId, productId, quantity, wishlistRow) {
-            quantity = parseInt(quantity);
-
-            if (quantity <= 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please enter a valid quantity.',
-                    timer: 3000,
-                    showConfirmButton: false
-                });
-                return;
-            }
-
-            $.ajax({
-                url: `/cart/${userId}/${productId}/store`,
-                method: 'POST',
-                data: {
-                    quantity: quantity,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function(response) {
-                    if (response.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: 'Product added to cart successfully!',
-                            timer: 3000,
-                            showConfirmButton: false
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: response.message,
-                            timer: 3000,
-                            showConfirmButton: false
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'An error occurred: ' + xhr.responseText,
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
-                }
-            });
-        }
     </script>
-
 @endsection

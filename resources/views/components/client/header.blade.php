@@ -20,7 +20,7 @@
                                     <li class="has-homemenu">
                                         <a href="{{route('home')}}">Home</a>
                                     </li>
-                                    <li class="has-megamenu" >
+                                    <li class="has-megamenu">
                                         <a href="{{route('shop')}}">Shop</a>
                                     </li>
                                     <li class="has-dropdown">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
                                 <button><i><img src="{{asset('client/assets/img/icon/cart-1.svg')}}" alt=""></i>
-                                    <span>5</span>
+                                    <span>{{$carts->count()}}</span>
                                 </button>
                             </div>
                         </div>
@@ -103,79 +103,65 @@
     <div class="tpcartinfo tp-cart-info-area p-relative">
         <button class="tpcart__close"><i class="icon-x"></i></button>
         <div class="tpcart">
-            <h4 class="tpcart__title">Your Cart</h4>
+            <h4 class="tpcart__title">Your Latest Cart</h4>
             <div class="tpcart__product">
                 <div class="tpcart__product-list">
                     <ul>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="{{asset('client/assets/img/product/products1-min.jpg')}}" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
+                        @php
+                            $subtotal = 0;
+                        @endphp
+                        @foreach($latestCarts as $cart)
+                            <li>
+                                <div class="tpcart__item">
+                                    <div class="tpcart__img">
+                                        <img src="{{ asset('store/product/image/' . $cart->product->images->firstOrFail()->image_path) }}"
+                                             alt="">
+                                        <div class="tpcart__del">
+                                            <a href="{{ route('cart.destroy', ['userId' => $user->id, 'productId' => $cart->product->id]) }}"><i class="icon-x-circle"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="tpcart__content">
+                <span class="tpcart__content-title">
+                    <a href="{{ route('shop.detail', ['slug' => $cart->product->slug]) }}">
+                        {{ $cart->product->name }}
+                    </a>
+                </span>
+                                        <div class="tpcart__cart-price">
+                                            <span class="quantity">{{ $cart->quantity }} x</span>
+                                            @php
+                                                if ($cart->product->discount) {
+                                                    if ($cart->product->discount->percentage) {
+                                                        $discountedPrice = $cart->product->price - ($cart->product->price * $cart->product->discount->percentage / 100);
+                                                    } elseif ($cart->product->discount->amount) {
+                                                        $discountedPrice = $cart->product->price - $cart->product->discount->amount;
+                                                    } else {
+                                                        $discountedPrice = $cart->product->price;
+                                                    }
+                                                } else {
+                                                    $discountedPrice = $cart->product->price;
+                                                }
+
+                                                $totalForItem = $discountedPrice * $cart->quantity;
+                                                $subtotal += $totalForItem;
+                                            @endphp
+                                            <span class="new-price">Rp. {{ number_format($totalForItem, 0, ',', '.') }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="tpcart__content">
-                                 <span class="tpcart__content-title"><a href="shop-details.html">Stacy's Pita Chips Parmesan Garlic & Herb From Nature</a>
-                                 </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$162.80</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="{{asset('client/assets/img/product/products12-min.jpg')}}" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpcart__content">
-                                 <span class="tpcart__content-title"><a href="shop-details.html">Banana, Beautiful Skin, Good For Health 1Kg</a>
-                                 </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$138.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tpcart__item">
-                                <div class="tpcart__img">
-                                    <img src="{{asset('client/assets/img/product/products3-min.jpg')}}" alt="">
-                                    <div class="tpcart__del">
-                                        <a href="#"><i class="icon-x-circle"></i></a>
-                                    </div>
-                                </div>
-                                <div class="tpcart__content">
-                                 <span class="tpcart__content-title"><a href="shop-details.html">Quaker Popped Rice Crisps Snacks Chocolate</a>
-                                 </span>
-                                    <div class="tpcart__cart-price">
-                                        <span class="quantity">1 x</span>
-                                        <span class="new-price">$162.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="tpcart__checkout">
                     <div class="tpcart__total-price d-flex justify-content-between align-items-center">
                         <span> Subtotal:</span>
-                        <span class="heilight-price"> $300.00</span>
+                        <span class="heilight-price"> Rp. {{ number_format($subtotal, 0, ',', '.') }}</span>
                     </div>
                     <div class="tpcart__checkout-btn">
                         <a class="tpcart-btn mb-10" href="cart.html">View Cart</a>
                         <a class="tpcheck-btn" href="checkout.html">Checkout</a>
                     </div>
                 </div>
-            </div>
-            <div class="tpcart__free-shipping text-center">
-                <span>Free shipping for orders <b>under 10km</b></span>
             </div>
         </div>
     </div>
@@ -209,7 +195,7 @@
                         </div>
                         <div class="header__info-cart tpcolor__oasis ml-10 tp-cart-toggle">
                             <button><i><img src="{{asset('client/assets/img/icon/cart-1.svg')}}" alt=""></i>
-                                <span>5</span>
+                                <span>{{$carts->count()}}</span>
                             </button>
                         </div>
                     </div>
@@ -233,17 +219,25 @@
         <div class="tpsideinfo__nabtab">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Menu</button>
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                            aria-selected="true">Menu
+                    </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Categories</button>
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                            aria-selected="false">Categories
+                    </button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                     tabindex="0">
                     <div class="mobile-menu"></div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                     tabindex="0">
                     <div class="tpsidebar-categories">
                         <ul>
                             <li><a href="shop-details.html">Dairy Farm</a></li>

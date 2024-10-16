@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardPenjualanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\DiscountController;
@@ -40,6 +41,9 @@ Route::get('/shop/{slug}', [ShopController::class, 'detail'])->name('shop.detail
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::get('/wishlist/{userId}/{productId}/store', [WishlistController::class, 'store'])->name('wishlist.store')->middleware('wishlist');
 Route::get('/wishlist/{userId}/{productId}/delete', [WishlistController::class, 'destroy'])->name('wishlist.destroy')->middleware('wishlist');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/{userId}/{productId}/store', [CartController::class, 'store'])->name('cart.store')->middleware('cart');
+Route::get('/cart/{userId}/{productId}/delete', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('cart');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')
