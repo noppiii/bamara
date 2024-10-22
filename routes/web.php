@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TagProductController;
 use App\Http\Controllers\VerifyController;
@@ -47,6 +48,7 @@ Route::post('/cart/{userId}/{productId}/store', [CartController::class, 'store']
 Route::get('/cart/{userId}/{productId}/delete', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('checkout');
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.post')->middleware('checkout');
+Route::post('/review/{productId}', [ReviewController::class, 'store'])->name('review.post')->middleware('review');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')

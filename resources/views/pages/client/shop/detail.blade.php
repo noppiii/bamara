@@ -6,6 +6,21 @@
 {{$detailProduct->name}}
 @endsection
 @section('content')
+    <style>
+        .tpreview__star-icon label i {
+            cursor: pointer;
+            font-size: 24px;
+            color: #cccccc;
+        }
+
+        .tpreview__star-icon label i.icon-star {
+            color: #f39c12;
+        }
+
+        .tpreview__star-icon label:hover i {
+            color: #f39c12;
+        }
+    </style>
     <main>
         <!-- breadcrumb-area-start -->
         <div class="breadcrumb__area grey-bg pt-5 pb-5">
@@ -188,33 +203,33 @@
                                             @endforeach
                                             <div class="tpreview__form">
                                                 <h4 class="tpreview__form-title mb-25">Add a review </h4>
-                                                <form action="#">
+                                                <form action="{{ route('review.post', ['productId' => $detailProduct->id]) }}" method="POST">
+                                                    @csrf
                                                     <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="tpreview__input mb-30">
-                                                                <input type="text" placeholder="Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="tpreview__input mb-30">
-                                                                <input type="email" placeholder="Email">
-                                                            </div>
-                                                        </div>
                                                         <div class="col-lg-12">
                                                             <div class="tpreview__star mb-20">
                                                                 <h4 class="title">Your Rating</h4>
-                                                                <div class="tpreview__star-icon">
-                                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                                    <a href="#"><i class="icon-star_outline1"></i></a>
-                                                                    <a href="#"><i class="icon-star_outline1"></i></a>
+                                                                <div class="tpreview__star-icon" id="star-rating">
+                                                                    <input type="radio" name="rating" value="1" id="star1" required hidden>
+                                                                    <label for="star1" data-value="1"><i class="icon-star_outline1"></i></label>
+
+                                                                    <input type="radio" name="rating" value="2" id="star2" hidden>
+                                                                    <label for="star2" data-value="2"><i class="icon-star_outline1"></i></label>
+
+                                                                    <input type="radio" name="rating" value="3" id="star3" hidden>
+                                                                    <label for="star3" data-value="3"><i class="icon-star_outline1"></i></label>
+
+                                                                    <input type="radio" name="rating" value="4" id="star4" hidden>
+                                                                    <label for="star4" data-value="4"><i class="icon-star_outline1"></i></label>
+
+                                                                    <input type="radio" name="rating" value="5" id="star5" hidden>
+                                                                    <label for="star5" data-value="5"><i class="icon-star_outline1"></i></label>
                                                                 </div>
                                                             </div>
                                                             <div class="tpreview__input mb-30">
-                                                                <textarea name="text" placeholder="Message"></textarea>
+                                                                <textarea name="comment" placeholder="Message" required></textarea>
                                                                 <div class="tpreview__submit mt-30">
-                                                                    <button class="tp-btn">Submit</button>
+                                                                    <button type="submit" class="tp-btn">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -486,4 +501,26 @@
         <!-- feature-area-end -->
 
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const starLabels = document.querySelectorAll('#star-rating label');
+
+            starLabels.forEach(label => {
+                label.addEventListener('click', function() {
+                    const selectedValue = this.getAttribute('data-value');
+
+                    starLabels.forEach(label => {
+                        label.querySelector('i').classList.remove('icon-star');
+                        label.querySelector('i').classList.add('icon-star_outline1');
+                    });
+
+                    for (let i = 0; i < selectedValue; i++) {
+                        starLabels[i].querySelector('i').classList.remove('icon-star_outline1');
+                        starLabels[i].querySelector('i').classList.add('icon-star');
+                    }
+                });
+            });
+        });
+
+    </script>
 @endsection

@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'wishlist' => \App\Http\Middleware\WishlistMiddleware::class,
         'cart' => \App\Http\Middleware\CartMiddleware::class,
         'checkout' => \App\Http\Middleware\CheckoutMiddleware::class,
+        'review' => \App\Http\Middleware\ReviewMiddleware::class,
     ];
 }

@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div
-                                            class="tpproductnav tpnavbar product-filter-nav d-flex align-items-center justify-content-center">
+                                                class="tpproductnav tpnavbar product-filter-nav d-flex align-items-center justify-content-center">
                                             <nav>
                                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                     <button class="nav-link" id="nav-all-tab" data-bs-toggle="tab"
@@ -154,41 +154,41 @@
                                                             <svg width="22" height="16" viewBox="0 0 22 16" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
                                                                 <path
-                                                                    d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 4C15.1046 4 16 3.10457 16 2C16 0.89543 15.1046 0 14 0C12.8954 0 12 0.89543 12 2C12 3.10457 12.8954 4 14 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 4C15.1046 4 16 3.10457 16 2C16 0.89543 15.1046 0 14 0C12.8954 0 12 0.89543 12 2C12 3.10457 12.8954 4 14 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 16C15.1046 16 16 15.1046 16 14C16 12.8954 15.1046 12 14 12C12.8954 12 12 12.8954 12 14C12 15.1046 12.8954 16 14 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 16C15.1046 16 16 15.1046 16 14C16 12.8954 15.1046 12 14 12C12.8954 12 12 12.8954 12 14C12 15.1046 12.8954 16 14 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 4C21.1046 4 22 3.10457 22 2C22 0.89543 21.1046 0 20 0C18.8954 0 18 0.89543 18 2C18 3.10457 18.8954 4 20 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 4C21.1046 4 22 3.10457 22 2C22 0.89543 21.1046 0 20 0C18.8954 0 18 0.89543 18 2C18 3.10457 18.8954 4 20 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 10C21.1046 10 22 9.10457 22 8C22 6.89543 21.1046 6 20 6C18.8954 6 18 6.89543 18 8C18 9.10457 18.8954 10 20 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 10C21.1046 10 22 9.10457 22 8C22 6.89543 21.1046 6 20 6C18.8954 6 18 6.89543 18 8C18 9.10457 18.8954 10 20 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 16C21.1046 16 22 15.1046 22 14C22 12.8954 21.1046 12 20 12C18.8954 12 18 12.8954 18 14C18 15.1046 18.8954 16 20 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 16C21.1046 16 22 15.1046 22 14C22 12.8954 21.1046 12 20 12C18.8954 12 18 12.8954 18 14C18 15.1046 18.8954 16 20 16Z"
+                                                                        fill="currentColor"/>
                                                             </svg>
                                                         </i>
                                                     </button>
@@ -200,32 +200,32 @@
                                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
                                                                 <path
-                                                                    d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 4C9.10457 4 10 3.10457 10 2C10 0.89543 9.10457 0 8 0C6.89543 0 6 0.89543 6 2C6 3.10457 6.89543 4 8 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M8 16C9.10457 16 10 15.1046 10 14C10 12.8954 9.10457 12 8 12C6.89543 12 6 12.8954 6 14C6 15.1046 6.89543 16 8 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 4C15.1046 4 16 3.10457 16 2C16 0.89543 15.1046 0 14 0C12.8954 0 12 0.89543 12 2C12 3.10457 12.8954 4 14 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 4C15.1046 4 16 3.10457 16 2C16 0.89543 15.1046 0 14 0C12.8954 0 12 0.89543 12 2C12 3.10457 12.8954 4 14 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M14 16C15.1046 16 16 15.1046 16 14C16 12.8954 15.1046 12 14 12C12.8954 12 12 12.8954 12 14C12 15.1046 12.8954 16 14 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M14 16C15.1046 16 16 15.1046 16 14C16 12.8954 15.1046 12 14 12C12.8954 12 12 12.8954 12 14C12 15.1046 12.8954 16 14 16Z"
+                                                                        fill="currentColor"/>
                                                             </svg>
                                                         </i>
                                                     </button>
@@ -236,23 +236,23 @@
                                                             <svg width="20" height="16" viewBox="0 0 20 16" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
                                                                 <path
-                                                                    d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M2 16C3.10457 16 4 15.1046 4 14C4 12.8954 3.10457 12 2 12C0.89543 12 0 12.8954 0 14C0 15.1046 0.89543 16 2 16Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 2C20 2.552 19.553 3 19 3H7C6.448 3 6 2.552 6 2C6 1.448 6.448 1 7 1H19C19.553 1 20 1.447 20 2Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 2C20 2.552 19.553 3 19 3H7C6.448 3 6 2.552 6 2C6 1.448 6.448 1 7 1H19C19.553 1 20 1.447 20 2Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 8C20 8.552 19.553 9 19 9H7C6.448 9 6 8.552 6 8C6 7.448 6.448 7 7 7H19C19.553 7 20 7.447 20 8Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 8C20 8.552 19.553 9 19 9H7C6.448 9 6 8.552 6 8C6 7.448 6.448 7 7 7H19C19.553 7 20 7.447 20 8Z"
+                                                                        fill="currentColor"/>
                                                                 <path
-                                                                    d="M20 14C20 14.552 19.553 15 19 15H7C6.448 15 6 14.552 6 14C6 13.447 6.448 13 7 13H19C19.553 13 20 13.447 20 14Z"
-                                                                    fill="currentColor"/>
+                                                                        d="M20 14C20 14.552 19.553 15 19 15H7C6.448 15 6 14.552 6 14C6 13.447 6.448 13 7 13H19C19.553 13 20 13.447 20 14Z"
+                                                                        fill="currentColor"/>
                                                             </svg>
                                                         </i>
                                                     </button>
@@ -308,7 +308,7 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
                                     <div
-                                        class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
+                                            class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
                                         @foreach($products as $product)
                                             <div class="col">
                                                 <div class="tpproduct p-relative mb-20">
@@ -320,20 +320,20 @@
                                                         @if($productImages->count() >= 2)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 1">
+                                                                        src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 1">
                                                             </a>
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
                                                                class="tpproduct__thumb-img">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 2">
+                                                                        src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 2">
                                                             </a>
                                                         @else($productImages->count() == 1)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 1">
+                                                                        src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 1">
                                                             </a>
                                                         @endif
                                                         @if($product->discount)
@@ -342,23 +342,30 @@
 
                                                                 @if($product->discount->percentage > 10)
                                                                     <span
-                                                                        class="tpproduct__info-hot bage__hot">HOT</span>
+                                                                            class="tpproduct__info-hot bage__hot">HOT</span>
                                                                 @endif
                                                             </div>
                                                         @endif
                                                         <div class="tpproduct__shopping">
                                                             @php
-                                                                $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                                $isInWishlist = false;
+                                                                if ($user) {
+                                                                    $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                                }
                                                             @endphp
 
-                                                            @if($isInWishlist)
+                                                            @if($user && $isInWishlist)
                                                                 <a class="tpproduct__shopping-wishlist"
                                                                    href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
                                                                     <i class="icon-heart1 icons"></i>
                                                                 </a>
-                                                            @else
+                                                            @elseif($user)
                                                                 <a class="tpproduct__shopping-wishlist"
                                                                    href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart icons"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="tpproduct__shopping-wishlist" href="{{route('login')}}">
                                                                     <i class="icon-heart icons"></i>
                                                                 </a>
                                                             @endif
@@ -394,7 +401,7 @@
                                                     </div>
                                                     <div class="tpproduct__hover-text">
                                                         <div
-                                                            class="tpproduct__hover-btn d-flex justify-content-center mb-10">
+                                                                class="tpproduct__hover-btn d-flex justify-content-center mb-10">
                                                             <a class="tp-btn-2" href="cart.html">Add to cart</a>
                                                         </div>
                                                         <div class="tpproduct__descrip">
@@ -427,7 +434,7 @@
                                 <div class="tab-pane fade show active whight-product" id="nav-popular" role="tabpanel"
                                      aria-labelledby="nav-popular-tab">
                                     <div
-                                        class="row row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
+                                            class="row row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
                                         @foreach($products as $product)
                                             <div class="col">
                                                 <div class="tpproduct p-relative mb-20">
@@ -439,45 +446,52 @@
                                                         @if($productImages->count() >= 2)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 1">
+                                                                        src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 1">
                                                             </a>
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
                                                                class="tpproduct__thumb-img">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 2">
+                                                                        src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 2">
                                                             </a>
                                                         @else($productImages->count() == 1)
                                                             <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                                 <img
-                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                    width="250px;" alt="Product Image 1">
+                                                                        src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                        width="250px;" alt="Product Image 1">
                                                             </a>
                                                         @endif
                                                         <div class="tpproduct__info bage">
                                                             @if($product->discount)
                                                                 <span
-                                                                    class="tpproduct__info-discount bage__discount">-{{ $product->discount->percentage }}%</span>
+                                                                        class="tpproduct__info-discount bage__discount">-{{ $product->discount->percentage }}%</span>
                                                                 @if($product->discount->percentage > 10)
                                                                     <span
-                                                                        class="tpproduct__info-hot bage__hot">HOT</span>
+                                                                            class="tpproduct__info-hot bage__hot">HOT</span>
                                                                 @endif
                                                         </div>
                                                         @endif
                                                         <div class="tpproduct__shopping">
                                                             @php
-                                                                $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                                $isInWishlist = false;
+                                                                if ($user) {
+                                                                    $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                                }
                                                             @endphp
 
-                                                            @if($isInWishlist)
+                                                            @if($user && $isInWishlist)
                                                                 <a class="tpproduct__shopping-wishlist"
                                                                    href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
                                                                     <i class="icon-heart1 icons"></i>
                                                                 </a>
-                                                            @else
+                                                            @elseif($user)
                                                                 <a class="tpproduct__shopping-wishlist"
                                                                    href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
+                                                                    <i class="icon-heart icons"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="tpproduct__shopping-wishlist" href="{{route('login')}}">
                                                                     <i class="icon-heart icons"></i>
                                                                 </a>
                                                             @endif
@@ -513,7 +527,7 @@
                                                     </div>
                                                     <div class="tpproduct__hover-text">
                                                         <div
-                                                            class="tpproduct__hover-btn d-flex justify-content-center mb-10">
+                                                                class="tpproduct__hover-btn d-flex justify-content-center mb-10">
                                                             <a class="tp-btn-2" href="cart.html">Add to cart</a>
                                                         </div>
                                                         <div class="tpproduct__descrip">
@@ -551,7 +565,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div
-                                                class="tplist__product d-flex align-items-center justify-content-between mb-20">
+                                                    class="tplist__product d-flex align-items-center justify-content-between mb-20">
                                                 <div class="tplist__product-img">
                                                     @php
                                                         $productImages = $product->images->take(2);
@@ -560,20 +574,20 @@
                                                     @if($productImages->count() >= 2)
                                                         <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                             <img
-                                                                src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                width="250px;" alt="Product Image 1">
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                         </a>
                                                         <a href="{{route('shop.detail', ['slug' => $product->slug])}}"
                                                            class="tpproduct__thumb-img">
                                                             <img
-                                                                src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
-                                                                width="250px;" alt="Product Image 2">
+                                                                    src="{{ asset('store/product/image/'. $productImages[1]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 2">
                                                         </a>
                                                     @else($productImages->count() == 1)
                                                         <a href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                             <img
-                                                                src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
-                                                                width="250px;" alt="Product Image 1">
+                                                                    src="{{ asset('store/product/image/'. $productImages[0]->image_path) }}"
+                                                                    width="250px;" alt="Product Image 1">
                                                         </a>
                                                     @endif
                                                     @if($product->discount)
@@ -582,14 +596,14 @@
 
                                                             @if($product->discount->percentage > 10)
                                                                 <span
-                                                                    class="tpproduct__info-hot bage__hot">HOT</span>
+                                                                        class="tpproduct__info-hot bage__hot">HOT</span>
                                                             @endif
                                                         </div>
                                                     @endif
                                                 </div>
                                                 <div class="tplist__content">
                                                     <h4 class="tplist__content-title"><a
-                                                            href="{{route('shop.detail', ['slug' => $product->slug])}}">
+                                                                href="{{route('shop.detail', ['slug' => $product->slug])}}">
                                                             {{$product->name}}
                                                         </a></h4>
                                                     @php
@@ -638,18 +652,25 @@
                                                     <button class="tp-btn-2 mb-10">Add to cart</button>
                                                     <div class="tplist__shopping">
                                                         @php
-                                                            $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                            $isInWishlist = false;
+                                                            if ($user) {
+                                                                $isInWishlist = $product->wishlists()->where('user_id', $user->id)->exists();
+                                                            }
                                                         @endphp
 
-                                                        @if($isInWishlist)
+                                                        @if($user && $isInWishlist)
                                                             <a class="tpproduct__shopping-wishlist"
                                                                href="{{ route('wishlist.destroy', ['userId' => $user->id, 'productId' => $product->id]) }}">
                                                                 <i class="icon-heart1 icons"></i> Added In Wishlist
                                                             </a>
-                                                        @else
+                                                        @elseif($user)
                                                             <a class="tpproduct__shopping-wishlist"
                                                                href="{{ route('wishlist.store', ['userId' => $user->id, 'productId' => $product->id]) }}">
                                                                 <i class="icon-heart icons"></i> Wishlist
+                                                            </a>
+                                                        @else
+                                                            <a class="tpproduct__shopping-wishlist" href="{{route('login')}}">
+                                                                <i class="icon-heart icons"></i>
                                                             </a>
                                                         @endif
                                                     </div>
