@@ -46,6 +46,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/{userId}/{productId}/store', [CartController::class, 'store'])->name('cart.store')->middleware('cart');
 Route::get('/cart/{userId}/{productId}/delete', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('checkout');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.post')->middleware('checkout');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')

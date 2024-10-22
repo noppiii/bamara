@@ -30,7 +30,8 @@
         <!-- checkout-area start -->
         <section class="checkout-area pb-50">
             <div class="container">
-                <form action="#">
+                <form action="{{ route('checkout.post') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="checkbox-form">
@@ -39,36 +40,41 @@
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>First Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="">
+                                            <input type="text" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
+                                            @error('first_name') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="">
+                                            <input type="text" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
+                                            @error('last_name') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
-                                            <input type="text" placeholder="Street address">
+                                            <input type="text" name="address" placeholder="Street address" value="{{ old('address') }}">
+                                            @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+                                            <input type="text" name="detail_address" placeholder="Apartment, suite, unit etc. (optional)" value="{{ old('detail_address') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Email Address <span class="required">*</span></label>
-                                            <input type="email" placeholder="">
+                                            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                                            @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Phone <span class="required">*</span></label>
-                                            <input type="text" placeholder="Phone Number">
+                                            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
+                                            @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -86,48 +92,23 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @php
-                                            $orderTotal = 0;
-                                        @endphp
-
+                                        @php $orderTotal = 0; @endphp
                                         @foreach($productOrder as $item)
                                             <tr class="cart_item">
                                                 <td class="product-name">
-                                                    {{$item->product->name}} <strong class="product-quantity">
-                                                        × {{$item->quantity}}</strong>
+                                                    {{ $item->product->name }} <strong class="product-quantity"> × {{ $item->quantity }}</strong>
                                                 </td>
                                                 <td class="product-total">
-                                                    <span
-                                                        class="amount">Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
+                                                    <span class="amount">Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
                                                 </td>
                                             </tr>
-                                            @php
-                                                $orderTotal += $item->product->price * $item->quantity;
-                                            @endphp
+                                            @php $orderTotal += $item->product->price * $item->quantity; @endphp
+
+                                            <input type="hidden" name="products[{{ $loop->index }}][product_id]" value="{{ $item->product->id }}">
+                                            <input type="hidden" name="products[{{ $loop->index }}][quantity]" value="{{ $item->quantity }}">
                                         @endforeach
                                         </tbody>
                                         <tfoot>
-                                        {{--                                        <tr class="cart-subtotal">--}}
-                                        {{--                                            <th>Cart Subtotal</th>--}}
-                                        {{--                                            <td><span class="amount">$215.00</span></td>--}}
-                                        {{--                                        </tr>--}}
-                                        {{--                                        <tr class="shipping">--}}
-                                        {{--                                            <th>Shipping</th>--}}
-                                        {{--                                            <td>--}}
-                                        {{--                                                <ul>--}}
-                                        {{--                                                    <li>--}}
-                                        {{--                                                        <input type="radio" name="shipping">--}}
-                                        {{--                                                        <label>--}}
-                                        {{--                                                            Flat Rate: <span class="amount">$7.00</span>--}}
-                                        {{--                                                        </label>--}}
-                                        {{--                                                    </li>--}}
-                                        {{--                                                    <li>--}}
-                                        {{--                                                        <input type="radio" name="shipping">--}}
-                                        {{--                                                        <label>Free Shipping:</label>--}}
-                                        {{--                                                    </li>--}}
-                                        {{--                                                </ul>--}}
-                                        {{--                                            </td>--}}
-                                        {{--                                        </tr>--}}
                                         <tr class="order-total">
                                             <th>Order Total</th>
                                             <td><strong><span
