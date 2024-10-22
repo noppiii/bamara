@@ -158,8 +158,7 @@
                         <span class="heilight-price"> Rp. {{ number_format($subtotal, 0, ',', '.') }}</span>
                     </div>
                     <div class="tpcart__checkout-btn">
-                        <a class="tpcart-btn mb-10" href="cart.html">View Cart</a>
-                        <a class="tpcheck-btn" href="checkout.html">Checkout</a>
+                        <a class="tpcheck-btn" href="{{route('checkout')}}">Checkout</a>
                     </div>
                 </div>
             </div>

@@ -59,24 +59,6 @@
                                             <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" placeholder="Town / City">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>State / County <span class="required">*</span></label>
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input type="text" placeholder="Postcode / Zip">
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Email Address <span class="required">*</span></label>
@@ -104,28 +86,31 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr class="cart_item">
-                                            <td class="product-name">
-                                                Vestibulum suscipit <strong class="product-quantity"> × 1</strong>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="amount">$165.00</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="cart_item">
-                                            <td class="product-name">
-                                                Vestibulum dictum magna <strong class="product-quantity"> × 1</strong>
-                                            </td>
-                                            <td class="product-total">
-                                                <span class="amount">$50.00</span>
-                                            </td>
-                                        </tr>
+                                        @php
+                                            $orderTotal = 0;
+                                        @endphp
+
+                                        @foreach($productOrder as $item)
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    {{$item->product->name}} <strong class="product-quantity">
+                                                        × {{$item->quantity}}</strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span
+                                                        class="amount">Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $orderTotal += $item->product->price * $item->quantity;
+                                            @endphp
+                                        @endforeach
                                         </tbody>
                                         <tfoot>
-                                        <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
-                                            <td><span class="amount">$215.00</span></td>
-                                        </tr>
+                                        {{--                                        <tr class="cart-subtotal">--}}
+                                        {{--                                            <th>Cart Subtotal</th>--}}
+                                        {{--                                            <td><span class="amount">$215.00</span></td>--}}
+                                        {{--                                        </tr>--}}
                                         {{--                                        <tr class="shipping">--}}
                                         {{--                                            <th>Shipping</th>--}}
                                         {{--                                            <td>--}}
@@ -145,7 +130,8 @@
                                         {{--                                        </tr>--}}
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">$215.00</span></strong>
+                                            <td><strong><span
+                                                        class="amount">Rp. {{ number_format($orderTotal, 0, ',', '.') }}</span></strong>
                                             </td>
                                         </tr>
                                         </tfoot>
@@ -176,10 +162,10 @@
                                                             <label for="bank_transfer"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
-                                                                    src="{{ asset('client/assets/img/product/products26-min.jpg') }}"
-                                                                    alt="Bank Transfer" class="mb-2"
-                                                                    style="width: 50px;">
-                                                                Bank Transfer
+                                                                    src="{{ asset('client/assets/img/logo/dana.png') }}"
+                                                                    alt="Dana" class="mb-2"
+                                                                    style="width: 72px;">
+                                                                Dana
                                                             </label>
                                                         </div>
                                                         <div class="col-6 col-md-4 mb-3 payment-option">
@@ -188,9 +174,9 @@
                                                             <label for="credit_card"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
-                                                                    src="{{ asset('client/assets/img/product/products26-min.jpg') }}"
-                                                                    alt="Credit Card" class="mb-2" style="width: 50px;">
-                                                                Credit Card
+                                                                    src="{{ asset('client/assets/img/logo/gopay.png') }}"
+                                                                    alt="Gopay" class="mb-2" style="width: 50px;">
+                                                                GoPay
                                                             </label>
                                                         </div>
                                                         <div class="col-6 col-md-4 mb-3 payment-option">
@@ -199,29 +185,7 @@
                                                             <label for="paypal"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
-                                                                    src="{{ asset('client/assets/img/product/products26-min.jpg') }}"
-                                                                    alt="PayPal" class="mb-2" style="width: 50px;">
-                                                                PayPal
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-6 col-md-4 mb-3 payment-option">
-                                                            <input type="radio" id="gopay" name="payment_method"
-                                                                   value="gopay" class="btn-check"/>
-                                                            <label for="gopay"
-                                                                   class="btn btn-outline-primary d-flex flex-column align-items-center">
-                                                                <img
-                                                                    src="{{ asset('client/assets/img/product/products26-min.jpg') }}"
-                                                                    alt="GoPay" class="mb-2" style="width: 50px;">
-                                                                GoPay
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-6 col-md-4 mb-3 payment-option">
-                                                            <input type="radio" id="shopeepay" name="payment_method"
-                                                                   value="shopeepay" class="btn-check"/>
-                                                            <label for="shopeepay"
-                                                                   class="btn btn-outline-primary d-flex flex-column align-items-center">
-                                                                <img
-                                                                    src="{{ asset('client/assets/img/product/products26-min.jpg') }}"
+                                                                    src="{{ asset('client/assets/img/logo/shopeepay.png') }}"
                                                                     alt="ShopeePay" class="mb-2" style="width: 50px;">
                                                                 ShopeePay
                                                             </label>
