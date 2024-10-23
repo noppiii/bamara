@@ -10,7 +10,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-3">
                         <div class="header__logo">
-                            <a href="index.html"><img src="{{asset('client/assets/img/logo/logo.png')}}" alt="logo"></a>
+                            <a href="{{route('home')}}"><img src="{{asset('client/assets/img/logo/logo.png')}}" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-xl-6">
@@ -23,31 +23,7 @@
                                     <li class="has-megamenu">
                                         <a href="{{route('shop')}}">Shop</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Big image</a></li>
-                                            <li><a href="blog-right-sidebar.html">Right sidebar</a></li>
-                                            <li><a href="blog-left-sidebar.html">Left sidebar</a></li>
-                                            <li><a href="blog-details.html">Single Post</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="about.html">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop-location.html">Shop Location One</a></li>
-                                            <li><a href="shop-location-2.html">Shop Location Two</a></li>
-                                            <li><a href="faq.html">FAQs</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="cart.html">Cart Page</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="log-in.html">Sign In</a></li>
-                                            <li><a href="comming-soon.html">Coming soon</a></li>
-                                            <li><a href="404.html">Page 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{route('contact-us')}}">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -178,7 +154,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-6 col-sm-4">
                     <div class="header__logo text-center">
-                        <a href="index.html"><img src="{{asset('client/assets/img/logo/logo.png')}}" alt="logo"></a>
+                        <a href="{{route('home')}}"><img src="{{asset('client/assets/img/logo/logo.png')}}" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-3 col-sm-5">
@@ -216,20 +192,6 @@
             </form>
         </div>
         <div class="tpsideinfo__nabtab">
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Menu
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                            aria-selected="false">Categories
-                    </button>
-                </li>
-            </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                      tabindex="0">
@@ -252,10 +214,10 @@
             </div>
         </div>
         <div class="tpsideinfo__account-link">
-            <a href="log-in.html"><i class="icon-user icons"></i> Login / Register</a>
+            <a href="{{route('login')}}"><i class="icon-user icons"></i> Login / Register</a>
         </div>
         <div class="tpsideinfo__wishlist-link">
-            <a href="wishlist.html" target="_parent"><i class="icon-heart"></i> Wishlist</a>
+            <a href="{{route('wishlist')}}" target="_parent"><i class="icon-heart"></i> Wishlist</a>
         </div>
     </div>
     <!-- sidebar-menu-area-end -->

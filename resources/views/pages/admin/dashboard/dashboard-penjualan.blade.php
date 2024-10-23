@@ -17,11 +17,12 @@
                         <h5 class="card-title mb-0">Sales</h5>
                         <small class="text-muted">Last Year</small>
                     </div>
-                    <div id="salesLastYear"></div>
+                    <div>
+                        {!! $lastYearChart->container() !!}
+                    </div>
                     <div class="card-body pt-0">
                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
-                            <h4 class="mb-0">175k</h4>
-                            <small class="text-danger">-16.2%</small>
+                            <h4 class="mb-0 text-success">Rp. {{$amountSalesLastYear}}</h4>
                         </div>
                     </div>
                 </div>
@@ -31,11 +32,13 @@
             <div class="col-xl-2 col-md-4 col-6 mb-4">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h5 class="card-title mb-0">Sessions</h5>
+                        <h5 class="card-title mb-0">Users</h5>
                         <small class="text-muted">Last Month</small>
                     </div>
                     <div class="card-body">
-                        <div id="sessionsLastMonth"></div>
+                        <div>
+                            {!! $userLastMonthChart->container() !!}
+                        </div>
                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
                             <h4 class="mb-0">45.1k</h4>
                             <small class="text-success">+12.6%</small>
@@ -919,4 +922,10 @@
         </div>
     </div>
     <!-- / Content -->
+
+
+    <script src="{{ $lastYearChart->cdn() }}"></script>
+
+    {{ $lastYearChart->script() }}
+    {{ $userLastMonthChart->script() }}
 @endsection

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardPenjualanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DashboardPenjualanController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
@@ -52,6 +52,7 @@ Route::post('/review/{productId}', [ReviewController::class, 'store'])->name('re
 Route::get('/payment/{snapToken}', function ($snapToken) {
     return view('pages.client.checkout.payment', compact('snapToken'));
 })->name('paymentPage');
+Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')
