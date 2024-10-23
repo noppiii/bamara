@@ -94,19 +94,44 @@
                                         <tbody>
                                         @php $orderTotal = 0; @endphp
                                         @foreach($productOrder as $item)
+                                            @php
+                                                $originalPrice = $item->product->price;
+                                                $discountedPrice = $originalPrice;
+
+                                                if ($item->product->discount) {
+                                                    if ($item->product->discount->percentage) {
+                                                        $discountedPrice = $originalPrice - ($originalPrice * $item->product->discount->percentage / 100);
+                                                    } elseif ($item->product->discount->amount) {
+                                                        $discountedPrice = $originalPrice - $item->product->discount->amount;
+                                                    }
+                                                }
+
+                                                $subtotal = $discountedPrice * $item->quantity;
+                                                $orderTotal += $subtotal;
+                                            @endphp
+
                                             <tr class="cart_item">
                                                 <td class="product-name">
                                                     {{ $item->product->name }} <strong class="product-quantity"> × {{ $item->quantity }}</strong>
                                                 </td>
                                                 <td class="product-total">
-                                                    <span class="amount">Rp. {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
+                                                    @if($discountedPrice < $originalPrice)
+                                                        <span class="amount">Rp. {{ number_format($discountedPrice * $item->quantity, 0, ',', '.') }}</span>
+                                                        <del>Rp. {{ number_format($originalPrice * $item->quantity, 0, ',', '.') }}</del>
+                                                    @else
+                                                        <span class="amount">Rp. {{ number_format($originalPrice * $item->quantity, 0, ',', '.') }}</span>
+                                                    @endif
                                                 </td>
                                             </tr>
-                                            @php $orderTotal += $item->product->price * $item->quantity; @endphp
 
                                             <input type="hidden" name="products[{{ $loop->index }}][product_id]" value="{{ $item->product->id }}">
                                             <input type="hidden" name="products[{{ $loop->index }}][quantity]" value="{{ $item->quantity }}">
                                         @endforeach
+
+                                        <tr class="order-total">
+                                            <th>Total</th>
+                                            <td><strong><span class="amount">Rp. {{ number_format($orderTotal, 0, ',', '.') }}</span></strong></td>
+                                        </tr>
                                         </tbody>
                                         <tfoot>
                                         <tr class="order-total">
