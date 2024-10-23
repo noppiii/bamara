@@ -187,7 +187,7 @@
                                                         </div>
                                                         <div class="col-6 col-md-4 mb-3 payment-option">
                                                             <input type="radio" id="paypal" name="payment_method"
-                                                                   value="paypal" class="btn-check"/>
+                                                                   value="shopeepay" class="btn-check"/>
                                                             <label for="paypal"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
