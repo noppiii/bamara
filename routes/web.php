@@ -49,6 +49,9 @@ Route::get('/cart/{userId}/{productId}/delete', [CartController::class, 'destroy
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('checkout');
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.post')->middleware('checkout');
 Route::post('/review/{productId}', [ReviewController::class, 'store'])->name('review.post')->middleware('review');
+Route::get('/payment/{snapToken}', function ($snapToken) {
+    return view('pages.client.checkout.payment', compact('snapToken'));
+})->name('paymentPage');
 
 Route::middleware(['role:Admin'])->group(function () {
     Route::prefix('admin')->name('admin.')

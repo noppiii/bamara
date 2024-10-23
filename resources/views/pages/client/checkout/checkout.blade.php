@@ -139,7 +139,7 @@
                                                     <div class="row">
                                                         <div class="col-6 col-md-4 mb-3 payment-option">
                                                             <input type="radio" id="bank_transfer" name="payment_method"
-                                                                   value="bank_transfer" class="btn-check"/>
+                                                                   value="dana" class="btn-check"/>
                                                             <label for="bank_transfer"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
@@ -151,7 +151,7 @@
                                                         </div>
                                                         <div class="col-6 col-md-4 mb-3 payment-option">
                                                             <input type="radio" id="credit_card" name="payment_method"
-                                                                   value="credit_card" class="btn-check"/>
+                                                                   value="gopay" class="btn-check"/>
                                                             <label for="credit_card"
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
@@ -167,7 +167,7 @@
                                                                    class="btn btn-outline-primary d-flex flex-column align-items-center">
                                                                 <img
                                                                     src="{{ asset('client/assets/img/logo/shopeepay.png') }}"
-                                                                    alt="ShopeePay" class="mb-2" style="width: 50px;">
+                                                                    alt="shopeepay" class="mb-2" style="width: 50px;">
                                                                 ShopeePay
                                                             </label>
                                                         </div>

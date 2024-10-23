@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReminderPaymentMail;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class CheckoutController extends Controller
 {
@@ -33,40 +38,96 @@ class CheckoutController extends Controller
             'products' => 'required|array',
             'products.*.product_id' => 'required|exists:products,id',
             'products.*.quantity' => 'required|integer|min:1',
+            'payment_method' => 'required|string',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $order = Order::create([
-                'user_id' => $user->id,
-                'first_name' => $validated['first_name'],
-                'last_name' => $validated['last_name'],
-                'address' => $validated['address'],
-                'detail_address' => $validated['detail_address'] ?? null,
-                'email' => $validated['email'],
-                'phone' => $validated['phone'],
-                'status' => 'pending',
-                'total_price' => 0,
+        $order = Order::create([
+            'user_id' => $user->id,
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'address' => $validated['address'],
+            'detail_address' => $validated['detail_address'] ?? null,
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'status' => 'pending',
+            'total_price' => 0,
+        ]);
+
+        $totalPrice = 0;
+        foreach ($validated['products'] as $productData) {
+            $product = Product::find($productData['product_id']);
+            $totalPrice += $product->price * $productData['quantity'];
+
+            $order->orderItems()->create([
+                'product_id' => $product->id,
+                'quantity' => $productData['quantity'],
+                'price' => $product->price * $productData['quantity'],
             ]);
+        }
 
-            $totalPrice = 0;
-            foreach ($validated['products'] as $productData) {
-                $product = Product::find($productData['product_id']);
-                $totalPrice += $product->price * $productData['quantity'];
+        $order->update(['total_price' => $totalPrice]);
 
-                $order->orderItems()->create([
-                    'product_id' => $product->id,
-                    'quantity' => $productData['quantity'],
-                    'price' => $product->price * $productData['quantity'],
-                ]);
-            }
+        $payment = Payment::create([
+            'order_id' => $order->id,
+            'nominal' => $totalPrice,
+            'payment_method' => $validated['payment_method'],
+            'status' => 'waiting payment',
+            'transaction_time' => now(),
+        ]);
 
-            $order->update(['total_price' => $totalPrice]);
+        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$isProduction = config('services.midtrans.isProduction');
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        Config::$is3ds = config('services.midtrans.is3ds');
 
-            DB::commit();
+        $unique_order_id = $order->id . '-' . time();
 
-            return redirect()->route('home')->with('success_message_create', 'Order placed successfully!');
+        $transactionDetails = [
+            'order_id' => $unique_order_id,
+            'gross_amount' => $totalPrice,
+        ];
+
+        $itemDetails = [];
+        foreach ($validated['products'] as $productData) {
+            $product = Product::find($productData['product_id']);
+            $itemDetails[] = [
+                'id' => $product->id,
+                'price' => $product->price,
+                'quantity' => $productData['quantity'],
+                'name' => $product->name,
+            ];
+        }
+
+        $customerDetails = [
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+        ];
+
+        $params = [
+            'transaction_details' => $transactionDetails,
+            'item_details' => $itemDetails,
+            'customer_details' => $customerDetails,
+            'enabled_payments' => [$validated['payment_method']],
+        ];
+
+        $snapToken = Snap::getSnapToken($params);
+
+        Mail::to($validated['email'])->send(new ReminderPaymentMail(
+            $validated['first_name'] . ' ' . $validated['last_name'],
+            $itemDetails,
+            $totalPrice,
+            $validated['payment_method'],
+            $snapToken
+        ));
+
+        DB::commit();
+
+        return redirect()->route('paymentPage', ['snapToken' => $snapToken]);
         } catch (Exception $e) {
             DB::rollBack();
             return back()->withErrors('Failed to place the order. Please try again.');
