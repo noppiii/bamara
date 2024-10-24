@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('detail_address')->nullable();
             $table->string('email');
             $table->string('phone');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });

@@ -11,7 +11,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <!-- Sales last year -->
-            <div class="col-xl-2 col-md-4 col-6 mb-4">
+            <div class="col-xl-3 col-md-4 col-6 mb-4">
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5 class="card-title mb-0">Sales</h5>
@@ -29,7 +29,7 @@
             </div>
 
             <!-- Sessions Last month -->
-            <div class="col-xl-2 col-md-4 col-6 mb-4">
+            <div class="col-xl-3 col-md-4 col-6 mb-4">
                 <div class="card">
                     <div class="card-header pb-0">
                         <h5 class="card-title mb-0">Users</h5>
@@ -40,47 +40,15 @@
                             {!! $userLastMonthChart->container() !!}
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
-                            <h4 class="mb-0">45.1k</h4>
-                            <small class="text-success">+12.6%</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Profit -->
-            <div class="col-xl-2 col-md-4 col-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="badge p-2 bg-label-danger mb-2 rounded">
-                            <i class="ti ti-currency-dollar ti-md"></i>
-                        </div>
-                        <h5 class="card-title mb-1 pt-2">Total Profit</h5>
-                        <small class="text-muted">Last week</small>
-                        <p class="mb-2 mt-1">1.28k</p>
-                        <div class="pt-1">
-                            <span class="badge bg-label-secondary">-12.2%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Sales -->
-            <div class="col-xl-2 col-md-4 col-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="badge p-2 bg-label-info mb-2 rounded"><i class="ti ti-chart-bar ti-md"></i></div>
-                        <h5 class="card-title mb-1 pt-2">Total Sales</h5>
-                        <small class="text-muted">Last week</small>
-                        <p class="mb-2 mt-1">$4,673</p>
-                        <div class="pt-1">
-                            <span class="badge bg-label-secondary">+25.2%</span>
+                            <h4 class="mb-0">{{$totalUser}} Users</h4>
+{{--                            <small class="text-success">+12.6%</small>--}}
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Revenue Growth -->
-            <div class="col-xl-4 col-md-8 mb-4">
+            <div class="col-xl-6 col-md-8 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -90,11 +58,11 @@
                                     <small>Weekly Report</small>
                                 </div>
                                 <div class="chart-statistics">
-                                    <h3 class="card-title mb-1">$4,673</h3>
-                                    <span class="badge bg-label-success">+15.2%</span>
+                                    <h3 class="card-title mb-1">Rp.{{$totalSalesLastWeek}}</h3>
+                                    <span class="badge bg-label-success">Rp. {{$totalSalesToday}}</span>
                                 </div>
                             </div>
-                            <div id="revenueGrowth"></div>
+                            <div>{!! $revenueGrowthChart->container() !!}</div>
                         </div>
                     </div>
                 </div>
@@ -154,9 +122,9 @@
                                     aria-selected="false"
                                 >
                                     <div class="badge bg-label-secondary rounded p-2">
-                                        <i class="ti ti-chart-bar ti-sm"></i>
+                                        <i class="ti ti-bottle ti-sm"></i>
                                     </div>
-                                    <h6 class="tab-widget-title mb-0 mt-2">Sales</h6>
+                                    <h6 class="tab-widget-title mb-0 mt-2">Product</h6>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -205,10 +173,10 @@
                         </ul>
                         <div class="tab-content p-0 ms-0 ms-sm-2">
                             <div class="tab-pane fade show active" id="navs-orders-id" role="tabpanel">
-                                <div id="earningReportsTabsOrders"></div>
+                                <div>{!! $orderLastYearChart->container() !!}</div>
                             </div>
                             <div class="tab-pane fade" id="navs-sales-id" role="tabpanel">
-                                <div id="earningReportsTabsSales"></div>
+                                <div>{!! $orderItemLastYearChart->container() !!}</div>
                             </div>
                             <div class="tab-pane fade" id="navs-profit-id" role="tabpanel">
                                 <div id="earningReportsTabsProfit"></div>
@@ -928,4 +896,7 @@
 
     {{ $lastYearChart->script() }}
     {{ $userLastMonthChart->script() }}
+    {{ $revenueGrowthChart->script() }}
+    {{ $orderLastYearChart->script()  }}
+    {{ $orderItemLastYearChart->script()  }}
 @endsection
