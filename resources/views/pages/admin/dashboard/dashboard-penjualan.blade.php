@@ -41,7 +41,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3 gap-3">
                             <h4 class="mb-0">{{$totalUser}} Users</h4>
-{{--                            <small class="text-success">+12.6%</small>--}}
+                            {{--                            <small class="text-success">+12.6%</small>--}}
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-column">
+                            <div class="col-xl-4 d-flex flex-column">
                                 <div class="card-title mb-auto">
                                     <h5 class="mb-1 text-nowrap">Revenue Growth</h5>
                                     <small>Weekly Report</small>
@@ -62,7 +62,7 @@
                                     <span class="badge bg-label-success">Rp. {{$totalSalesToday}}</span>
                                 </div>
                             </div>
-                            <div>{!! $revenueGrowthChart->container() !!}</div>
+                            <div class="col-xl-8">{!! $revenueGrowthChart->container() !!}</div>
                         </div>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
                                     aria-selected="false"
                                 >
                                     <div class="badge bg-label-secondary rounded p-2">
-                                        <i class="ti ti-chart-pie-2 ti-sm"></i>
+                                        <i class="ti ti-news ti-sm"></i>
                                     </div>
-                                    <h6 class="tab-widget-title mb-0 mt-2">Income</h6>
+                                    <h6 class="tab-widget-title mb-0 mt-2">Blog</h6>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -167,7 +167,8 @@
                                     data-bs-toggle="tab"
                                     aria-selected="false"
                                 >
-                                    <div class="badge bg-label-secondary rounded p-2"><i class="ti ti-plus ti-sm"></i></div>
+                                    <div class="badge bg-label-secondary rounded p-2"><i class="ti ti-plus ti-sm"></i>
+                                    </div>
                                 </a>
                             </li>
                         </ul>
@@ -179,7 +180,7 @@
                                 <div>{!! $orderItemLastYearChart->container() !!}</div>
                             </div>
                             <div class="tab-pane fade" id="navs-profit-id" role="tabpanel">
-                                <div id="earningReportsTabsProfit"></div>
+                                <div>{!! $profitYearChart->container() !!}</div>
                             </div>
                             <div class="tab-pane fade" id="navs-income-id" role="tabpanel">
                                 <div id="earningReportsTabsIncome"></div>
@@ -194,8 +195,8 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
-                            <h5 class="mb-0">Sales</h5>
-                            <small class="text-muted">Last 6 Months</small>
+                            <h5 class="mb-0">Transaction</h5>
+                            <small class="text-muted">List of Transactions By Payment Method</small>
                         </div>
                         <div class="dropdown">
                             <button
@@ -215,7 +216,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="salesLastMonth"></div>
+                        <div>{!! $transactionPaymentMethodChart->container() !!}</div>
                     </div>
                 </div>
             </div>
@@ -225,8 +226,8 @@
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between">
                         <div class="card-title m-0 me-2">
-                            <h5 class="m-0 me-2">Browser States</h5>
-                            <small class="text-muted">Counter April 2022</small>
+                            <h5 class="m-0 me-2">Incoming Order</h5>
+                            <small class="text-muted">List of Incoming Orders</small>
                         </div>
                         <div class="dropdown">
                             <button
@@ -248,122 +249,30 @@
                     </div>
                     <div class="card-body">
                         <ul class="p-0 m-0">
-                            <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/chrome.png"
-                                    alt="Chrome"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Google Chrome</h6>
-                                        </div>
+                            @foreach($recentOrder as $order)
+                                <li class="d-flex mb-4 pb-1 align-items-center">
+                                    <img
+                                        src="{{asset('store/user/profile' . $order->user->profile_picture)}}"
+                                        alt="Chrome"
+                                        height="28"
+                                        class="me-3 rounded"
+                                    />
+                                    <div class="d-flex w-100 align-items-center gap-2">
+                                        <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
+                                            <div>
+                                                <h6 class="mb-0">{{$order->user->name}}</h6>
+                                            </div>
 
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">90.4%</h6>
+                                            <div class="user-progress d-flex align-items-center gap-2">
+                                                <h6 class="mb-0 text-primary"><i
+                                                        class="ti ti-bottle me-2"></i>{{$order->orderItems->count()}}
+                                                    Item</h6>
+                                            </div>
                                         </div>
+                                        <div class="chart-progress" data-color="secondary" data-series="85"></div>
                                     </div>
-                                    <div class="chart-progress" data-color="secondary" data-series="85"></div>
-                                </div>
-                            </li>
-                            <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/safari.png"
-                                    alt="Safari"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Apple Safari</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">70.6%</h6>
-                                        </div>
-                                    </div>
-                                    <div class="chart-progress" data-color="success" data-series="70"></div>
-                                </div>
-                            </li>
-                            <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/firefox.png"
-                                    alt="Firefox"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Mozilla Firefox</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">35.5%</h6>
-                                        </div>
-                                    </div>
-                                    <div class="chart-progress" data-color="primary" data-series="25"></div>
-                                </div>
-                            </li>
-                            <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/opera.png"
-                                    alt="Opera"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Opera Mini</h6>
-                                        </div>
-
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">80.0%</h6>
-                                        </div>
-                                    </div>
-                                    <div class="chart-progress" data-color="danger" data-series="75"></div>
-                                </div>
-                            </li>
-                            <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/edge.png"
-                                    alt="Edge"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Internet Explorer</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">62.2%</h6>
-                                        </div>
-                                    </div>
-                                    <div class="chart-progress" data-color="info" data-series="60"></div>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <img
-                                    src="../../assets/img/icons/brands/brave.png"
-                                    alt="Brave"
-                                    height="28"
-                                    class="me-3 rounded"
-                                />
-                                <div class="d-flex w-100 align-items-center gap-2">
-                                    <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
-                                        <div>
-                                            <h6 class="mb-0">Brave</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-2">
-                                            <h6 class="mb-0">46.3%</h6>
-                                        </div>
-                                    </div>
-                                    <div class="chart-progress" data-color="warning" data-series="45"></div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -373,7 +282,7 @@
             <div class="col-12 col-xl-4 mb-4 col-md-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5 class="mb-0 card-title">Project Status</h5>
+                        <h5 class="mb-0 card-title">Blog Status</h5>
                         <div class="dropdown">
                             <button
                                 class="btn p-0"
@@ -398,25 +307,25 @@
                             </div>
                             <div class="d-flex justify-content-between w-100 gap-2 align-items-center">
                                 <div class="me-2">
-                                    <h6 class="mb-0">$4,3742</h6>
-                                    <small class="text-muted">Your Earnings</small>
+                                    <h6 class="mb-0">Blog 1</h6>
+                                    <small class="text-muted">3 Views</small>
                                 </div>
                                 <p class="mb-0 text-success">+10.2%</p>
                             </div>
                         </div>
                         <div id="projectStatusChart"></div>
                         <div class="d-flex justify-content-between mb-3">
-                            <h6 class="mb-0">Donates</h6>
+                            <h6 class="mb-0">Like</h6>
                             <div class="d-flex">
-                                <p class="mb-0 me-3">$756.26</p>
-                                <p class="mb-0 text-danger">-139.34</p>
+                                <p class="mb-0 me-3">26 Likes</p>
+                                <p class="mb-0 text-success">+139.34</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mb-3 pb-1">
-                            <h6 class="mb-0">Podcasts</h6>
+                            <h6 class="mb-0">Comments</h6>
                             <div class="d-flex">
-                                <p class="mb-0 me-3">$2,207.03</p>
-                                <p class="mb-0 text-success">+576.24</p>
+                                <p class="mb-0 me-3">3 Comments</p>
+                                <p class="mb-0 text-success">+576.2</p>
                             </div>
                         </div>
                     </div>
@@ -428,8 +337,8 @@
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
-                            <h5 class="mb-0">Active Project</h5>
-                            <small class="text-muted">Average 72% Completed</small>
+                            <h5 class="mb-0">Stock Product</h5>
+                            <small class="text-muted">List of Products with Available Stock</small>
                         </div>
                         <div class="dropdown">
                             <button
@@ -451,168 +360,37 @@
                     </div>
                     <div class="card-body">
                         <ul class="p-0 m-0">
-                            <li class="mb-3 pb-1 d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/laravel-logo.png"
-                                        alt="laravel-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">Laravel</h6>
-                                        <small class="text-muted">eCommerce</small>
+                            @foreach($productStock as $product)
+                                <li class="mb-3 pb-1 d-flex">
+                                    <div class="d-flex w-50 align-items-center me-3">
+                                        <img
+                                            src="{{ asset('store/product/image/' . $product->images->firstOrFail()->image_path) }}"
+                                            alt="laravel-logo"
+                                            class="me-3"
+                                            width="35"
+                                        />
+                                        <div>
+                                            <h6 class="mb-0">{{ $product->name }}</h6>
+                                            <small class="text-muted">{{ $product->orderItems->count() }} Sell</small>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-danger"
-                                            role="progressbar"
-                                            style="width: 54%"
-                                            aria-valuenow="54"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
+                                    <div class="d-flex flex-grow-1 align-items-center">
+                                        <div class="progress w-100 me-3" style="height: 8px">
+                                            <div
+                                                class="progress-bar {{ $product->stock <= 5 ? 'bg-danger' : 'bg-success' }}"
+                                                role="progressbar"
+                                                style="width: {{ $product->stock <= 5 ? '100%' : '54%' }}"
+                                                aria-valuenow="{{ $product->stock }}"
+                                                aria-valuemin="0"
+                                                aria-valuemax="100"
+                                            ></div>
+                                        </div>
+                                        <span class="{{ $product->stock <= 5 ? 'text-danger' : 'text-success' }}">
+                                            {{ $product->stock }}
+                                        </span>
                                     </div>
-                                    <span class="text-muted">54%</span>
-                                </div>
-                            </li>
-                            <li class="mb-3 pb-1 d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/figma-logo.png"
-                                        alt="figma-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">Figma</h6>
-                                        <small class="text-muted">App UI Kit</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-primary"
-                                            role="progressbar"
-                                            style="width: 86%"
-                                            aria-valuenow="86"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                    <span class="text-muted">86%</span>
-                                </div>
-                            </li>
-                            <li class="mb-3 pb-1 d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/vue-logo.png"
-                                        alt="vue-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">VueJs</h6>
-                                        <small class="text-muted">Calendar App</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-success"
-                                            role="progressbar"
-                                            style="width: 90%"
-                                            aria-valuenow="90"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                    <span class="text-muted">90%</span>
-                                </div>
-                            </li>
-                            <li class="mb-3 pb-1 d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/react-logo.png"
-                                        alt="react-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">React</h6>
-                                        <small class="text-muted">Dashboard</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-info"
-                                            role="progressbar"
-                                            style="width: 37%"
-                                            aria-valuenow="37"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                    <span class="text-muted">37%</span>
-                                </div>
-                            </li>
-                            <li class="mb-3 pb-1 d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/bootstrap-logo.png"
-                                        alt="bootstrap-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">Bootstrap</h6>
-                                        <small class="text-muted">Website</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-primary"
-                                            role="progressbar"
-                                            style="width: 22%"
-                                            aria-valuenow="22"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                    <span class="text-muted">22%</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div class="d-flex w-50 align-items-center me-3">
-                                    <img
-                                        src="../../assets/img/icons/brands/sketch-logo.png"
-                                        alt="sketch-logo"
-                                        class="me-3"
-                                        width="35"
-                                    />
-                                    <div>
-                                        <h6 class="mb-0">Sketch</h6>
-                                        <small class="text-muted">Website Design</small>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-grow-1 align-items-center">
-                                    <div class="progress w-100 me-3" style="height: 8px">
-                                        <div
-                                            class="progress-bar bg-warning"
-                                            role="progressbar"
-                                            style="width: 29%"
-                                            aria-valuenow="29"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
-                                    <span class="text-muted">29%</span>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -645,136 +423,35 @@
                         <table class="table table-borderless border-top">
                             <thead class="border-bottom">
                             <tr>
-                                <th>CARD</th>
+                                <th>PAYMENT</th>
+                                <th>NOMINAL</th>
                                 <th>DATE</th>
                                 <th>STATUS</th>
-                                <th>TREND</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-3">
-                                            <img src="../../assets/img/icons/payments/visa-img.png" alt="Visa" height="30" />
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0 fw-semibold">*4230</p>
-                                            <small class="text-muted">Credit</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <p class="mb-0 fw-semibold">Sent</p>
-                                        <small class="text-muted text-nowrap">17 Mar 2022</small>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-label-success">Verified</span></td>
-                                <td>
-                                    <p class="mb-0 fw-semibold">+$1,678</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-3">
-                                            <img
-                                                src="../../assets/img/icons/payments/master-card-img.png"
-                                                alt="Visa"
-                                                height="30"
-                                            />
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0 fw-semibold">*5578</p>
-                                            <small class="text-muted">Credit</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <p class="mb-0 fw-semibold">Sent</p>
-                                        <small class="text-muted text-nowrap">12 Feb 2022</small>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-label-danger">Rejected</span></td>
-                                <td>
-                                    <p class="mb-0 fw-semibold">-$839</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-3">
-                                            <img
-                                                src="../../assets/img/icons/payments/american-express-img.png"
-                                                alt="Visa"
-                                                height="30"
-                                            />
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0 fw-semibold">*4567</p>
-                                            <small class="text-muted">Credit</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <p class="mb-0 fw-semibold">Sent</p>
-                                        <small class="text-muted text-nowrap">28 Feb 2022</small>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-label-success">Verified</span></td>
-                                <td>
-                                    <p class="mb-0 fw-semibold">+$435</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-3">
-                                            <img src="../../assets/img/icons/payments/visa-img.png" alt="Visa" height="30" />
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0 fw-semibold">*5699</p>
-                                            <small class="text-muted">Credit</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <p class="mb-0 fw-semibold">Sent</p>
-                                        <small class="text-muted text-nowrap">8 Jan 2022</small>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-label-secondary">Pending</span></td>
-                                <td>
-                                    <p class="mb-0 fw-semibold">+$2,345</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="me-3">
-                                            <img src="../../assets/img/icons/payments/visa-img.png" alt="Visa" height="30" />
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0 fw-semibold">*5699</p>
-                                            <small class="text-muted">Credit</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <p class="mb-0 fw-semibold">Sent</p>
-                                        <small class="text-muted text-nowrap">8 Jan 2022</small>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-label-danger">Rejected</span></td>
-                                <td>
-                                    <p class="mb-0 fw-semibold">-$234</p>
-                                </td>
-                            </tr>
+                            @foreach($recentTransaction as $transaction)
+                                <tr>
+                                    <td>
+                                        <small>{{ ucwords($transaction->payment_method) }}</small>
+                                    </td>
+                                    <td>
+                                        <small>{{number_format($transaction->nominal, 0, ',', '.')}}</small>
+                                    </td>
+                                    <td>
+                                        <small>{{ \Carbon\Carbon::parse($transaction->transaction_time)->format('d M Y') }}</small>
+                                    </td>
+                                    <td>
+                                        @if($transaction->status === 'cancel')
+                                            <span class="badge bg-label-danger">Cancel</span>
+                                        @elseif($transaction->status === 'waiting payment')
+                                            <span class="badge bg-label-warning">Waiting Payment</span>
+                                        @elseif($transaction->status === 'success')
+                                            <span class="badge bg-label-success">Success</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -809,78 +486,60 @@
                                 <span class="timeline-point timeline-point-primary"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Client Meeting</h6>
-                                        <small class="text-muted">Today</small>
+                                        <h6 class="mb-0">Wishlist</h6>
                                     </div>
-                                    <p class="mb-2">Project meeting with john @10:15am</p>
-                                    <div class="d-flex flex-wrap">
-                                        <div class="avatar me-2">
-                                            <img src="../../assets/img/avatars/3.png" alt="Avatar" class="rounded-circle" />
-                                        </div>
-                                        <div class="ms-1">
-                                            <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                            <span>CEO of Infibeam</span>
-                                        </div>
-                                    </div>
+                                    @if($latestWishlist && $latestWishlist->product)
+                                        <p class="mb-2">{{ $latestActivity->first_name }} {{$latestActivity->last_name}} add {{ $latestWishlist->product->name }} to wishlist at {{\Carbon\Carbon::parse($latestWishlist->created_at)->format('d M Y')}}</p>
+                                    @else
+                                        <p class="mb-2">No recent wishlist activity.</p>
+                                    @endif
                                 </div>
                             </li>
                             <li class="timeline-item timeline-item-transparent ps-4">
                                 <span class="timeline-point timeline-point-success"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Create a new project for client</h6>
-                                        <small class="text-muted">2 Day Ago</small>
+                                        <h6 class="mb-0">Cart</h6>
                                     </div>
-                                    <p class="mb-0">Add files to new design folder</p>
+                                    @if($latestCart && $latestCart->product)
+                                        <p class="mb-2">{{ $latestActivity->first_name }} {{$latestActivity->last_name}} add {{ $latestCart->product->name }} to cart at {{\Carbon\Carbon::parse($latestWishlist->created_at)->format('d M Y')}}</p>
+                                    @else
+                                        <p class="mb-2">No recent cart activity.</p>
+                                    @endif
                                 </div>
                             </li>
                             <li class="timeline-item timeline-item-transparent ps-4">
                                 <span class="timeline-point timeline-point-danger"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Shared 2 New Project Files</h6>
-                                        <small class="text-muted">6 Day Ago</small>
+                                        <h6 class="mb-0">Order</h6>
                                     </div>
-                                    <p class="mb-2">
-                                        Sent by Mollie Dixon
-                                        <img
-                                            src="../../assets/img/avatars/4.png"
-                                            class="rounded-circle me-3"
-                                            alt="avatar"
-                                            height="24"
-                                            width="24"
-                                        />
-                                    </p>
-                                    <div class="d-flex flex-wrap gap-2 pt-1">
-                                        <a href="javascript:void(0)" class="me-3">
-                                            <img
-                                                src="../../assets/img/icons/misc/doc.png"
-                                                alt="Document image"
-                                                width="15"
-                                                class="me-2"
-                                            />
-                                            <span class="fw-semibold text-heading">App Guidelines</span>
-                                        </a>
-                                        <a href="javascript:void(0)">
-                                            <img
-                                                src="../../assets/img/icons/misc/xls.png"
-                                                alt="Excel image"
-                                                width="15"
-                                                class="me-2"
-                                            />
-                                            <span class="fw-semibold text-heading">Testing Results</span>
-                                        </a>
-                                    </div>
+                                    @if($latestOrder && $latestOrder->orderItems->isNotEmpty())
+                                        <p class="mb-2">
+                                            {{ $latestOrder->first_name }} {{ $latestOrder->last_name }}
+                                            do order {{ $latestOrder->orderItems->first()->product->name }}
+                                            on {{ \Carbon\Carbon::parse($latestOrder->created_at)->format('d M Y') }}
+                                        </p>
+                                    @else
+                                        <p class="mb-2">No recent order activity.</p>
+                                    @endif
                                 </div>
                             </li>
                             <li class="timeline-item timeline-item-transparent ps-4 border-0">
                                 <span class="timeline-point timeline-point-info"></span>
                                 <div class="timeline-event pb-0">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Project status updated</h6>
-                                        <small class="text-muted">10 Day Ago</small>
+                                        <h6 class="mb-0">Payment</h6>
                                     </div>
-                                    <p class="mb-0">Woocommerce iOS App Completed</p>
+                                    @if($latestPayment)
+                                        <p class="mb-2">
+                                            Payment of {{ number_format($latestPayment->nominal, 0, ',', '.') }}
+                                            via {{ ucfirst($latestPayment->payment_method) }}
+                                            on {{ \Carbon\Carbon::parse($latestPayment->transaction_time)->format('d M Y') }}
+                                        </p>
+                                    @else
+                                        <p class="mb-2">No recent payment activity.</p>
+                                    @endif
                                 </div>
                             </li>
                         </ul>
@@ -898,5 +557,7 @@
     {{ $userLastMonthChart->script() }}
     {{ $revenueGrowthChart->script() }}
     {{ $orderLastYearChart->script()  }}
-    {{ $orderItemLastYearChart->script()  }}
+    {{ $orderItemLastYearChart->script() }}
+    {{ $profitYearChart->script() }}
+    {{ $transactionPaymentMethodChart->script() }}
 @endsection

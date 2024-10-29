@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
+            'profile_picture' => 'client/assets/img/icon/default-user.png',
             'role_id' => $adminRole->id,
             'status_account' => 'active'
         ]);
@@ -29,6 +30,7 @@ class UserTableSeeder extends Seeder
             'name' => 'User Biasa',
             'email' => 'user@example.com',
             'password' => bcrypt('password'),
+            'profile_picture' => 'client/assets/img/icon/default-user.png',
             'role_id' => $userRole->id,
             'status_account' => 'active'
         ]);

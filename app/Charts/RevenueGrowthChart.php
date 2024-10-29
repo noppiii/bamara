@@ -36,7 +36,6 @@ class RevenueGrowthChart
 
         return $this->chart->barChart()
             ->addData('Revenue', $revenues)
-            ->setWidth(400)
             ->setXAxis($daysOfWeek)
             ->setColors($colors)
             ->setHeight(235);

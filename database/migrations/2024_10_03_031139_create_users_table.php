@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status_account', ['inactive', 'pending', 'active'])->default('pending');
             $table->string('password');
             $table->string('email_verification_token')->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->string('profile_picture')->nullable()->default('client/assets/img/icon/default-user.png');
             $table->rememberToken();
             $table->timestamps();
         });

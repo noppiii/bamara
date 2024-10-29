@@ -45,7 +45,7 @@ class OrderItemLastYearChart
 
         $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         $data = [];
-        $colors = ['#FF5733', '#28A745', '#FFC300', '#1E90FF', '#8A2BE2']; // Example colors for each product
+        $colors = ['#FF5733', '#28A745', '#FFC300', '#1E90FF', '#8A2BE2'];
 
         foreach ($monthlyData as $productName => $quantities) {
             $monthlyQuantities = [];
